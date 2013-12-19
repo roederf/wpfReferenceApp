@@ -1,26 +1,19 @@
-﻿using BusinessLogic;
-using BusinessLogicInterface;
-using Microsoft.Practices.Prism.Events;
-using ReferenceApplication.Base;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using UIMockupApp.Base;
 
-namespace ReferenceApplication.ViewModel
+namespace UIMockupApp.ViewModel
 {
     public class EditViewModel : BaseViewModel
     {
-        IApplicationModel _appModel;
-
         public EditViewModel()
-            :base()
+            : base()
         {
-            _appModel = App.CurrentApp.ApplicationModel;
-            
-            Name = _appModel.CurrentFile.Name;
+            Name = "Testfilename";
         }
 
         #region Property string 'Name'
@@ -34,23 +27,6 @@ namespace ReferenceApplication.ViewModel
                 {
                     _Name = value;
                     OnPropertyChanged("Name");
-                }
-            }
-        }
-        #endregion
-        
-
-        #region Property BusyState 'BusyState'
-        private BusyState _BusyState = BusyState.Active;
-        public BusyState BusyState
-        {
-            get { return _BusyState; }
-            set
-            {
-                if (_BusyState != value)
-                {
-                    _BusyState = value;
-                    OnPropertyChanged("BusyState");
                 }
             }
         }
@@ -73,7 +49,7 @@ namespace ReferenceApplication.ViewModel
 
         private void OnCloseFileCommand(object param)
         {
-            _appModel.CloseFile();   
+            
         }
         #endregion
 

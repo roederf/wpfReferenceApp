@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8F15F5BA-2933-42BE-8AE0-AF763850DC33}</ProjectGuid>
+    <ProjectGuid>{6FA04926-DC13-412E-B896-67F52C4DE2A9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BusinessLogicMockup</RootNamespace>
@@ -39,7 +39,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationMockup.cs" />
+    <Compile Include="FileItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyItem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogicInterface\BusinessLogicInterface.csproj">
+      <Project>{09e7157b-e71b-48e0-b475-697bbd170106}</Project>
+      <Name>BusinessLogicInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelInterfaces\ModelInterfaces.csproj">
+      <Project>{8353b528-ef9f-4b17-bddc-bfae4d086003}</Project>
+      <Name>ModelInterfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

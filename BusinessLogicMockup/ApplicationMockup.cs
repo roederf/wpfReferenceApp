@@ -1,6 +1,5 @@
 ﻿using BusinessLogicInterface;
 using ModelInterfaces;
-using ModelLib;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,12 +8,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BusinessLogic
+namespace BusinessLogicMockup
 {
-    public class ApplicationModel : IApplicationModel
+    public class ApplicationMockup : IApplicationModel
     {
         public void Init()
         {
+
             State = ApplicationState.Login;
         }
 
@@ -31,8 +31,11 @@ namespace BusinessLogic
 
         public void OpenFile()
         {
-            CurrentFile = new FileItem();
-            CurrentFile.Name = "Example File";
+            CurrentFile = new FileItem()
+            {
+                Properties = new List<IPropertyItem>()
+            };
+            CurrentFile.Name = "Mockup Test File";
             CurrentFile.Properties.Add(new PropertyItem() { Name = "Property one", Value = 0 });
             CurrentFile.Properties.Add(new PropertyItem() { Name = "Property two", Value = 0 });
             CurrentFile.Properties.Add(new PropertyItem() { Name = "Property three", Value = 0 });

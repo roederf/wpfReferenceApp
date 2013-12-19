@@ -1,24 +1,19 @@
-﻿using BusinessLogic;
-using BusinessLogicInterface;
-using Microsoft.Practices.Prism.Events;
-using ReferenceApplication.Base;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using UIMockupApp.Base;
 
-namespace ReferenceApplication.ViewModel
+namespace UIMockupApp.ViewModel
 {
     public class HomeViewModel : BaseViewModel
     {
-        IApplicationModel _appModel;
-
         public HomeViewModel()
-            :base()
+            : base()
         {
-            _appModel = App.CurrentApp.ApplicationModel;
+            
         }
 
         #region Command 'LogoutCommand', Parameter: object
@@ -38,7 +33,7 @@ namespace ReferenceApplication.ViewModel
 
         private void OnLogoutCommand(object param)
         {
-            _appModel.Logout();
+            
         }
         #endregion
 
@@ -59,7 +54,7 @@ namespace ReferenceApplication.ViewModel
 
         private void OnOpenFileCommand(object param)
         {
-            _appModel.OpenFile();
+            
         }
         #endregion
     }

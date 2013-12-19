@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModelInterfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace ModelLib
 {
-    public class FileItem : BaseModel
+    public class FileItem : BaseModel, IFileItem
     {
-        
-        #region Property List<PropertyItem> 'Properties'
-        private List<PropertyItem> _Properties = new List<PropertyItem>();
-        public List<PropertyItem> Properties
+
+        #region Property List<IPropertyItem> 'Properties'
+        private List<IPropertyItem> _Properties = new List<IPropertyItem>();
+        public List<IPropertyItem> Properties
         {
             get { return _Properties; }
         }

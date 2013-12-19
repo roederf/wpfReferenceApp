@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BusinessLogicMockup")]
+[assembly: AssemblyTitle("ModelInterfaces")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("BusinessLogicMockup")]
+[assembly: AssemblyProduct("ModelInterfaces")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2b1557c2-0c9c-49a0-8ec0-32bfe05f1bb3")]
+[assembly: Guid("a22976dc-6ff6-465b-9cba-25e8ad8c5c30")]
 
 // Version information for an assembly consists of the following four values:
 //

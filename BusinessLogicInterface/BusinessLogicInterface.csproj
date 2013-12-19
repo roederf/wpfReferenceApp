@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B43B8F2E-A807-4C7A-AA41-6C46950B4A19}</ProjectGuid>
+    <ProjectGuid>{09E7157B-E71B-48E0-B475-697BBD170106}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BusinessLogic</RootNamespace>
-    <AssemblyName>BusinessLogic</AssemblyName>
+    <RootNamespace>BusinessLogicInterface</RootNamespace>
+    <AssemblyName>BusinessLogicInterface</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,21 +39,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationModel.cs" />
+    <Compile Include="ApplicationState.cs" />
+    <Compile Include="IApplicationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLogicInterface\BusinessLogicInterface.csproj">
-      <Project>{09e7157b-e71b-48e0-b475-697bbd170106}</Project>
-      <Name>BusinessLogicInterface</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ModelInterfaces\ModelInterfaces.csproj">
       <Project>{8353b528-ef9f-4b17-bddc-bfae4d086003}</Project>
       <Name>ModelInterfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ModelLib\ModelLib.csproj">
-      <Project>{a028ec9b-b81c-4e1d-869a-16ebf929b5ad}</Project>
-      <Name>ModelLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

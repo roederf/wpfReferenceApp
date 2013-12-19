@@ -1,4 +1,6 @@
 ﻿using BusinessLogic;
+using BusinessLogicInterface;
+using BusinessLogicMockup;
 using Microsoft.Practices.Prism.Events;
 using ReferenceApplication.Base;
 using ReferenceApplication.ViewModel;
@@ -27,8 +29,13 @@ namespace ReferenceApplication
         {
             base.OnStartup(e);
 
-            ApplicationModel = new ApplicationModel();
-            ApplicationModel.PropertyChanged += AppModel_PropertyChanged;
+            var am = new ApplicationModel();
+            am.PropertyChanged += AppModel_PropertyChanged;
+            ApplicationModel = am;
+
+            //var mockupApp = new ApplicationMockup();
+            //mockupApp.PropertyChanged += AppModel_PropertyChanged;
+            //ApplicationModel = mockupApp;
 
             //ViewModelFactory.Register(typeof(ILoginViewModel), typeof(LoginViewModel));
             ViewModelFactory.Register(typeof(UI.Interfaces.IContentViewModel), typeof(ContentViewModel));
@@ -113,7 +120,7 @@ namespace ReferenceApplication
         }
         #endregion
 
-        public ApplicationModel ApplicationModel { get; private set; }
+        public IApplicationModel ApplicationModel { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

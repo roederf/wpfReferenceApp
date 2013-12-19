@@ -1,5 +1,7 @@
 ﻿using BusinessLogic;
+using BusinessLogicInterface;
 using Microsoft.Practices.Prism.Events;
+using ModelInterfaces;
 using ModelLib;
 using ReferenceApplication.Base;
 using System;
@@ -18,7 +20,7 @@ namespace ReferenceApplication.ViewModel
 {
     public class PropertyViewModel : BaseViewModel, IPropertyViewModel
     {
-        private ApplicationModel _appModel;
+        private IApplicationModel _appModel;
         
 
         public PropertyViewModel()
@@ -50,7 +52,7 @@ namespace ReferenceApplication.ViewModel
 
             if (Model != null)
             {
-                FileItem fileItem = Model as FileItem;
+                IFileItem fileItem = Model as IFileItem;
 
                 _Items.Clear();
                 foreach (var item in fileItem.Properties)

@@ -1,0 +1,31 @@
+﻿<Window x:Class="UIMockupApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="clr-namespace:UI;assembly=UI"
+        xmlns:v="clr-namespace:UI.View;assembly=UI"
+        xmlns:vm="clr-namespace:UIMockupApp.ViewModel"
+        Title="Mockup Application" Height="350" Width="525">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+            <v:LoginView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:HomeViewModel}">
+            <v:HomeView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:EditViewModel}">
+            <v:EditView />
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Login" Command="{Binding ShowLoginCommand}"/>
+            <Button Content="Home" Command="{Binding ShowHomeCommand}"/>
+            <Button Content="Edit" Command="{Binding ShowEditCommand}"/>
+        </StackPanel>
+        <ContentPresenter Grid.Row="1"  Content="{Binding Shell}"/>
+    </Grid>
+</Window>

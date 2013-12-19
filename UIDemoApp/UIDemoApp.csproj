@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3775DD1D-0A58-4DEC-AD29-CCB2F172C9F7}</ProjectGuid>
+    <ProjectGuid>{18BD2FA9-FEA2-453F-A153-9A29A2B72C13}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ReferenceApplication</RootNamespace>
-    <AssemblyName>ReferenceApplication</AssemblyName>
+    <RootNamespace>UIDemoApp</RootNamespace>
+    <AssemblyName>UIDemoApp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Practices.Prism">
-      <HintPath>..\..\..\..\..\Desktop\compositewpf-69631\compositewpf-69631\V4\Bin\Desktop\Microsoft.Practices.Prism.dll</HintPath>
+      <HintPath>..\ReferenceApplication\external\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -56,15 +56,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Base\BaseViewModel.cs" />
-    <Compile Include="Base\RelayCommand.cs" />
-    <Compile Include="ViewModel\BusyState.cs" />
-    <Compile Include="ViewModel\ContentViewModel.cs" />
-    <Compile Include="ViewModel\PropertySelectionChangedEvent.cs" />
-    <Compile Include="ViewModel\PropertyViewModel.cs" />
-    <Compile Include="ViewModel\EditViewModel.cs" />
-    <Compile Include="ViewModel\HomeViewModel.cs" />
-    <Compile Include="ViewModel\LoginViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -106,29 +97,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLogicInterface\BusinessLogicInterface.csproj">
-      <Project>{09e7157b-e71b-48e0-b475-697bbd170106}</Project>
-      <Name>BusinessLogicInterface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BusinessLogicMockup\BusinessLogicMockup.csproj">
-      <Project>{6fa04926-dc13-412e-b896-67f52c4de2a9}</Project>
-      <Name>BusinessLogicMockup</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
-      <Project>{b43b8f2e-a807-4c7a-aa41-6c46950b4a19}</Project>
-      <Name>BusinessLogic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ModelInterfaces\ModelInterfaces.csproj">
-      <Project>{8353b528-ef9f-4b17-bddc-bfae4d086003}</Project>
-      <Name>ModelInterfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ModelLib\ModelLib.csproj">
-      <Project>{a028ec9b-b81c-4e1d-869a-16ebf929b5ad}</Project>
-      <Name>ModelLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UI\UI.csproj">
-      <Project>{49435173-d143-40f7-a2ae-0a5e52a21dbf}</Project>
-      <Name>UI</Name>
+    <ProjectReference Include="..\ReferenceApplication\ReferenceApplication.csproj">
+      <Project>{3775dd1d-0a58-4dec-ad29-ccb2f172c9f7}</Project>
+      <Name>ReferenceApplication</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

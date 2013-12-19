@@ -1,5 +1,7 @@
 ﻿using BusinessLogic;
+using BusinessLogicInterface;
 using Microsoft.Practices.Prism.Events;
+using ModelInterfaces;
 using ModelLib;
 using ReferenceApplication.Base;
 using System;
@@ -15,8 +17,8 @@ namespace ReferenceApplication.ViewModel
 {
     public class ContentViewModel : BaseViewModel, IContentViewModel
     {
-        ApplicationModel _appModel;
-        PropertyItem _selectedItem = null;
+        IApplicationModel _appModel;
+        IPropertyItem _selectedItem = null;
 
         public ContentViewModel()
             :base()
