@@ -21,7 +21,7 @@
             </Grid.Style>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding SelectedProperty, StringFormat={}Details of {0}}" />
-                <Button Content="Calculate something" Command="{Binding DoSomethingCommand}" HorizontalAlignment="Center"/>
+                <Button Content="Calculate something" Command="{Binding DoSomethingInBackgroundCommand}" HorizontalAlignment="Center"/>
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Value}" />
             </StackPanel>
         </Grid>

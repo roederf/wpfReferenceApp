@@ -127,34 +127,31 @@ namespace ReferenceApplication.ViewModel
         }
         #endregion
 
-        #region Command 'DoSomethingCommand', Parameter: object
-        private ICommand _DoSomethingCommand;
-        public ICommand DoSomethingCommand
+        #region Command 'DoSomethingInBackgroundCommand', Parameter: object
+        private ICommand _DoSomethingInBackgroundCommand;
+        public ICommand DoSomethingInBackgroundCommand
         {
             get
             {
-                return _DoSomethingCommand ?? (_DoSomethingCommand = new RelayCommand<object>(OnDoSomethingCommand, CanDoSomething));
+                return _DoSomethingInBackgroundCommand ?? (_DoSomethingInBackgroundCommand = new BackgroundCommand(OnDoSomethingInBackgroundCommand, OnDoSomethingInBackgroundCompleted, CanDoSomethingInBackground));
             }
         }
 
-        private bool CanDoSomething(object param)
+        private bool CanDoSomethingInBackground(object param)
         {
             var pItem = _appModel.CurrentFile.Properties.FirstOrDefault(p => p.Name == SelectedPropertyName);
             return pItem != null;
         }
 
-        private void OnDoSomethingCommand(object param)
+        private void OnDoSomethingInBackgroundCommand(object param)
         {
-            BackgroundWorker bw = new BackgroundWorker();
-            bw.DoWork += (s, e) =>
-                {
-                    _appModel.CalculateValue(SelectedPropertyName);
-                };
-            bw.RunWorkerCompleted += (s, e) =>
-                {
-                };
-            bw.RunWorkerAsync();
+            _appModel.CalculateValue(SelectedPropertyName);
+        }
+
+        private void OnDoSomethingInBackgroundCompleted(object param)
+        {
         }
         #endregion
+
     }
 }
