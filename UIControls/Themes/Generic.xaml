@@ -2,7 +2,24 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:UIControls">
-   
-    
-    
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Button.xaml"/>
+        <ResourceDictionary Source="CheckBox.xaml"/>
+        <ResourceDictionary Source="ComboBox.xaml"/>
+        <ResourceDictionary Source="Expander.xaml"/>
+        <ResourceDictionary Source="Label.xaml"/>
+        <ResourceDictionary Source="ListBox.xaml"/>
+        <ResourceDictionary Source="Menu.xaml"/>
+        <ResourceDictionary Source="ProgressBar.xaml"/>
+        <ResourceDictionary Source="RadioButton.xaml"/>
+        <ResourceDictionary Source="ScrollBar.xaml"/>
+        <ResourceDictionary Source="ScrollViewer.xaml"/>
+        <ResourceDictionary Source="Slider.xaml"/>
+        <ResourceDictionary Source="TabControl.xaml"/>
+        <ResourceDictionary Source="TextBox.xaml"/>
+        <ResourceDictionary Source="ToggleButton.xaml"/>
+        <ResourceDictionary Source="TreeView.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
 </ResourceDictionary>

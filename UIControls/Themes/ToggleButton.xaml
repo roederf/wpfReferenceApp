@@ -1,0 +1,236 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Disabled Brushes are used for the Disabled look of each control -->
+    <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#FF888888"/>
+    <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="#FFEEEEEE"/>
+    <SolidColorBrush x:Key="DisabledBorderBrush" Color="#FFAAAAAA"/>
+
+    <!-- DefaultedBorderBrush is used to show KeyBoardFocus -->
+    <SolidColorBrush x:Key="DefaultedBorderBrush" Color="#FF000000"/>
+    <SolidColorBrush x:Key="SolidBorderBrush" Color="Black"/>
+    <SolidColorBrush x:Key="LightBorderBrush" Color="#AAA"/>
+    <SolidColorBrush x:Key="LightColorBrush" Color="#DDD"/>
+
+    <!-- PressedBrush is used for Pressed in Button, Radio Button, CheckBox -->
+    <SolidColorBrush x:Key="PressedBrush" Color="#FF3399FF"/>
+    <SolidColorBrush x:Key="PressedBorderBrush" Color="Black"/>
+
+    <Style x:Key="IconToggleButtonStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Grid x:Name="Background" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+
+                        <Border x:Name="_border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentControl x:Name="_content"
+                                            Content="{TemplateBinding Content}"
+                                            Background="{TemplateBinding Background}"
+                                            Foreground="{TemplateBinding Foreground}"
+                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                            Margin="{TemplateBinding Padding}"
+                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ToggleButton.IsChecked" Value="true">
+                            <Setter Property="Foreground" TargetName="_content" Value="Black"/>
+                            <Setter Property="Background" TargetName="_content"  Value="White"/>
+                            <Setter Property="Background" TargetName="_border"  Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Foreground" TargetName="_content"  Value="Black"/>
+                            <Setter Property="Background" TargetName="_content"  Value="White"/>
+                            <Setter Property="Background" TargetName="_border"  Value="White"/>
+                        </Trigger>
+                        <!--<Trigger Property="IsKeyboardFocused" Value="true">
+                            <Setter Property="Foreground" TargetName="_content"  Value="{StaticResource ButtonHoverBorder}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" TargetName="_content"  Value="{StaticResource ButtonHoverBorder}"/>
+                            <Setter Property="Background" TargetName="Border" Value="{StaticResource ButtonHoverBackground}"/>
+                        </Trigger>-->
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Simple Toggle Button - This control sets brushes on each state. Note that these brushes must be listed above since they are static resources -->
+    <Style TargetType="{x:Type ToggleButton}" BasedOn="{x:Null}">
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource SimpleButtonFocusVisual}"/>
+        <Setter Property="Background" Value="{DynamicResource NormalBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}"/>
+        <Setter Property="Padding" Value="8,4"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+
+                    <!-- We use Grid as a root because it is easy to add more elements to customize the button -->
+                    <Grid x:Name="Grid">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border x:Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="True"/>
+
+                        <Border x:Name="BorderSelected"
+                                Visibility="Collapsed"
+                                Background="{StaticResource PressedBrush}"
+                                BorderBrush="{StaticResource PressedBorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="True"/>
+
+                        <!-- Content Presenter is where the text content etc is placed by the control -->
+                        <!-- The bindings are useful so that the control can be parameterized without editing the template -->
+                        <ContentControl x:Name="_content" TextBlock.Foreground="Black"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        Margin="{TemplateBinding Padding}"
+                                        Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Content="{TemplateBinding Content}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <!--<ContentControl x:Name="_contentSelected" TextBlock.Foreground="White"
+                                        Visibility="Collapsed"
+                                        Foreground="White"
+                                        Content="{TemplateBinding Content}"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        Margin="{TemplateBinding Padding}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>-->
+                    </Grid>
+
+                    <!--Each state sets a brush on the Border in the template -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="true">
+                            <Setter Property="BorderBrush" Value="{DynamicResource DefaultedBorderBrush}" TargetName="Border"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource DefaultedBorderBrush}" TargetName="BorderSelected"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{DynamicResource MouseOverBrush}" TargetName="Border"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background" Value="{DynamicResource PressedBrush}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource PressedBorderBrush}"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter Property="Visibility" Value="Visible" TargetName="BorderSelected"/>
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="Border"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Background" Value="{DynamicResource PressedBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="true"/>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" Value="{DynamicResource DisabledBackgroundBrush}" TargetName="Border"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource DisabledBorderBrush}" TargetName="Border"/>
+                            <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Simple ON/OFF Toggle Button -->
+    <Style x:Key="OnOffToggleButtonStyle" TargetType="{x:Type ToggleButton}" BasedOn="{x:Null}">
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource SimpleButtonFocusVisual}"/>
+        <Setter Property="Background" Value="{DynamicResource NormalBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}"/>
+        <Setter Property="Padding" Value="8,4"/>
+        <Setter Property="Content" Value="OFF"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+
+                    <!-- We use Grid as a root because it is easy to add more elements to customize the button -->
+                    <Grid x:Name="Grid">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border x:Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="True"/>
+
+                        <Border x:Name="BorderSelected"
+                                Visibility="Collapsed"
+                                Background="{StaticResource PressedBrush}"
+                                BorderBrush="{StaticResource PressedBorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="True"/>
+
+                        <!-- Content Presenter is where the text content etc is placed by the control -->
+                        <!-- The bindings are useful so that the control can be parameterized without editing the template -->
+                        <ContentControl x:Name="_content" TextBlock.Foreground="Black"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        Margin="{TemplateBinding Padding}"
+                                        Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Content="{TemplateBinding Content}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <!--<ContentControl x:Name="_contentSelected" TextBlock.Foreground="White"
+                                        Visibility="Collapsed"
+                                        Foreground="White"
+                                        Content="{TemplateBinding Content}"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        Margin="{TemplateBinding Padding}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>-->
+                    </Grid>
+
+                    <!--Each state sets a brush on the Border in the template -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="true">
+                            <Setter Property="BorderBrush" Value="{DynamicResource DefaultedBorderBrush}" TargetName="Border"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource DefaultedBorderBrush}" TargetName="BorderSelected"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{DynamicResource MouseOverBrush}" TargetName="Border"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background" Value="{DynamicResource PressedBrush}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource PressedBorderBrush}"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter Property="Visibility" Value="Visible" TargetName="BorderSelected"/>
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="Border"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Background" Value="{DynamicResource PressedBrush}"/>
+                            <Setter Property="Content" Value="ON"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="true"/>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" Value="{DynamicResource DisabledBackgroundBrush}" TargetName="Border"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource DisabledBorderBrush}" TargetName="Border"/>
+                            <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    
+</ResourceDictionary>

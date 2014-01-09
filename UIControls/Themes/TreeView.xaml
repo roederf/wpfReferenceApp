@@ -1,0 +1,95 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Used for background of ScrollViewer, TreeView, ListBox, Expander, TextBox, Tab Control -->
+    <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FFF"/>
+
+    <!-- Used for Checkmark, Radio button, TreeViewItem, Expander ToggleButton glyphs -->
+    <SolidColorBrush x:Key="GlyphBrush" Color="#444"/>
+    <SolidColorBrush x:Key="ButtonNormalBackground" Color="White"/>
+    <SolidColorBrush x:Key="ButtonHoverBackground" Color="#FFCCCCCC"/>
+    <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF555555"/>
+    <SolidColorBrush x:Key="ButtonHoverBorder" Color="Black"/>
+    <SolidColorBrush x:Key="ButtonDisabledBorder" Color="#FFCCCCCC"/>
+    <SolidColorBrush x:Key="ButtonDisabledBackground" Color="#FFFFFFFF"/>
+
+    <!-- Disabled Brushes are used for the Disabled look of each control -->
+    <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#FF888888"/>
+    <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="#FFEEEEEE"/>
+    <SolidColorBrush x:Key="DisabledBorderBrush" Color="#FFAAAAAA"/>
+
+    <!-- DefaultedBorderBrush is used to show KeyBoardFocus -->
+    <SolidColorBrush x:Key="DefaultedBorderBrush" Color="#FF000000"/>
+    <SolidColorBrush x:Key="SolidBorderBrush" Color="Black"/>
+    <SolidColorBrush x:Key="LightBorderBrush" Color="#AAA"/>
+    <SolidColorBrush x:Key="LightColorBrush" Color="#DDD"/>
+
+    <!--<ControlTemplate x:Key="_TreeViewItemTopLevelTemplate" TargetType="{x:Type c:TreeViewItemEx}">
+        <Grid Name="_MainGrid" Background="Red" Margin="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ContentPresenter x:Name="PART_Header"  VerticalAlignment="Center" Margin="5"
+                              ContentTemplate="{TemplateBinding HeaderTemplate}"
+                              Content="{TemplateBinding Header}" />
+            <ItemsPresenter Grid.Column="1" VerticalAlignment="Center"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" TargetName="_MainGrid" Value="Cyan"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="_TreeViewItemSubLevelTemplate" TargetType="{x:Type c:TreeViewItemEx}">
+        <Grid Name="_MainGrid" Background="DarkRed" Margin="5">
+            <ContentPresenter x:Name="PART_Header" Margin="5"
+                              ContentTemplate="{TemplateBinding HeaderTemplate}"
+                              Content="{TemplateBinding Header}" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" TargetName="_MainGrid" Value="Yellow"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="_TreeViewItemStyle" TargetType="{x:Type c:TreeViewItemEx}">
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template" Value="{StaticResource _TreeViewItemTopLevelTemplate}" />
+        <Style.Triggers>
+            <Trigger Property="IsTopLevel" Value="False">
+                <Setter Property="Template" Value="{StaticResource _TreeViewItemSubLevelTemplate}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type c:TreeViewEx}">
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="ItemContainerStyle" Value="{StaticResource _TreeViewItemStyle}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type c:TreeViewEx}">
+                    <Grid>
+                        <ScrollViewer x:Name="PART_ItemsScrollViewer"
+                                      Background="Transparent"
+                                      Focusable="False"
+                                      CanContentScroll="False"
+                                      VerticalScrollBarVisibility="Auto"
+                                      HorizontalScrollBarVisibility="Disabled">
+                            <ItemsPresenter/>
+                        </ScrollViewer>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+
+</ResourceDictionary>

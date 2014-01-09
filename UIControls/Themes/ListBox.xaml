@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- SelectedBackgroundBrush is used for the Selected item in ListBoxItem, ComboBoxItem-->
+    <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="#DDD"/>
+
+    <!-- Used for background of ScrollViewer, TreeView, ListBox, Expander, TextBox, Tab Control -->
+    <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FFF"/>
+
+    <!-- Disabled Brushes are used for the Disabled look of each control -->
+    <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#FF888888"/>
+    <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="#FFEEEEEE"/>
+    <SolidColorBrush x:Key="DisabledBorderBrush" Color="#FFAAAAAA"/>
+
+    <!-- DefaultedBorderBrush is used to show KeyBoardFocus -->
+    <SolidColorBrush x:Key="DefaultedBorderBrush" Color="#FF000000"/>
+    <SolidColorBrush x:Key="SolidBorderBrush" Color="Black"/>
+    <SolidColorBrush x:Key="LightBorderBrush" Color="#AAA"/>
+    <SolidColorBrush x:Key="LightColorBrush" Color="#DDD"/>
+
+</ResourceDictionary>
