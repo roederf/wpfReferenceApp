@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicInterface", "B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicMockup", "BusinessLogicMockup\BusinessLogicMockup.csproj", "{6FA04926-DC13-412E-B896-67F52C4DE2A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIControls", "UIControls\UIControls.csproj", "{3C7C8C24-D1C3-405C-A0C8-9D9A32DA9189}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{6FA04926-DC13-412E-B896-67F52C4DE2A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FA04926-DC13-412E-B896-67F52C4DE2A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FA04926-DC13-412E-B896-67F52C4DE2A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C7C8C24-D1C3-405C-A0C8-9D9A32DA9189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C7C8C24-D1C3-405C-A0C8-9D9A32DA9189}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C7C8C24-D1C3-405C-A0C8-9D9A32DA9189}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C7C8C24-D1C3-405C-A0C8-9D9A32DA9189}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
