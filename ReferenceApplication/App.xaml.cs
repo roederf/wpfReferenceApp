@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -29,17 +30,15 @@ namespace ReferenceApplication
         {
             base.OnStartup(e);
 
-            var am = new ApplicationModel();
+            //var am = new ApplicationModel();
+            var am = new ApplicationMockup();
             am.PropertyChanged += AppModel_PropertyChanged;
             ApplicationModel = am;
 
-            //var mockupApp = new ApplicationMockup();
-            //mockupApp.PropertyChanged += AppModel_PropertyChanged;
-            //ApplicationModel = mockupApp;
-
-            //ViewModelFactory.Register(typeof(ILoginViewModel), typeof(LoginViewModel));
-            ViewModelFactory.Register(typeof(UI.Interfaces.IContentViewModel), typeof(ContentViewModel));
-            ViewModelFactory.Register(typeof(UI.Interfaces.IPropertyViewModel), typeof(PropertyViewModel));
+            ViewModelFactory.SetViewmodelAssembly(Assembly.GetExecutingAssembly());
+            ViewModelFactory.SetInterfaceAssembly(Assembly.Load(new AssemblyName("UI")));
+            
+            ViewModelFactory.RegisterClassesFromFolder();
 
             MainWindow mw = new MainWindow();
             mw.DataContext = this;
