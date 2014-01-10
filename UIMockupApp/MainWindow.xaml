@@ -4,7 +4,7 @@
         xmlns:ui="clr-namespace:UI;assembly=UI"
         xmlns:v="clr-namespace:UI.View;assembly=UI"
         xmlns:vm="clr-namespace:UIMockupApp.ViewModel"
-        Title="Mockup Application" Height="555" Width="555">
+        Title="Mockup Application" Height="768" Width="1024">
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:LoginViewModel}">
             <v:LoginView />
@@ -35,13 +35,13 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" Content="Default Button"/>
-                <Button Grid.Row="0" Grid.Column="1"/>
+                <Button Grid.Row="0" Grid.Column="1" Content="Button"/>
                 <Label Grid.Row="1" Grid.Column="0" Content="Add Button"/>
-                <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource AddButtonStyle}"/>
+                <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource AddButtonStyle}" Content="Add"/>
                 <Label Grid.Row="2" Grid.Column="0" Content="Close Button"/>
-                <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource CloseButtonStyle}"/>
+                <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource CloseButtonStyle}" Content="Close"/>
                 <Label Grid.Row="3" Grid.Column="0" Content="Icon Button"/>
-                <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource IconButtonStyle}"/>
+                <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource IconButtonStyle}" Content="Icon"/>
                 <Label Grid.Row="4" Grid.Column="0" Content="Radio Button"/>
                 <RadioButton Grid.Row="4" Grid.Column="1"/>
                 <Label Grid.Row="5" Grid.Column="0" Content="Content driven Radio Button"/>
@@ -115,6 +115,42 @@
                 </ScrollViewer>
             </Grid>
         </TabItem>
+        <TabItem Header="Flex Components">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Expander"/>
+                <Expander Grid.Row="0" Grid.Column="1" Header="Expander">
+                    <Grid Width="50" Height="50" Background="YellowGreen"/>
+                </Expander>
+                <Label Grid.Row="1" Grid.Column="0" Content="Expander Pill"/>
+                <Expander Grid.Row="1" Grid.Column="1" Header="Expander" Style="{StaticResource ExpanderPillStyle}">
+                    <Grid Width="50" Height="50" Background="YellowGreen"/>
+                </Expander>
+                <!--<Label Grid.Row="2" Grid.Column="0" Content="Expander ToolBar"/>
+                <Expander Grid.Row="2" Grid.Column="1" Header="Expander" Style="{StaticResource ExpanderToolBarStyle}">
+                    <Grid Width="50" Height="50" Background="YellowGreen"/>
+                </Expander>-->
+                <Label Grid.Row="3" Grid.Column="0" Content="Treeview"/>
+                <TreeView Grid.Row="3" Grid.Column="1">
+                    <TreeViewItem Header="item1">
+                        <TreeViewItem Header="subitem1a"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="item2">
+                        <TreeViewItem Header="subitem2a"/>
+                        <TreeViewItem Header="subitem2b"/>
+                    </TreeViewItem>
+                </TreeView>
+            </Grid>
+        </TabItem>
         <TabItem Header="Mockup App">
             <Grid>
                 <Grid.RowDefinitions>
@@ -130,5 +166,4 @@
             </Grid>
         </TabItem>
     </TabControl>
-
 </Window>

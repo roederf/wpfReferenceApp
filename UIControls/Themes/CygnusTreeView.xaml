@@ -24,7 +24,38 @@
     <SolidColorBrush x:Key="LightBorderBrush" Color="#AAA"/>
     <SolidColorBrush x:Key="LightColorBrush" Color="#DDD"/>
 
-    <Style x:Key="_TreeViewItemStyle" TargetType="{x:Type TreeViewItem}">
+    <!--<ControlTemplate x:Key="_TreeViewItemTopLevelTemplate" TargetType="{x:Type c:TreeViewItemEx}">
+        <Grid Name="_MainGrid" Background="Red" Margin="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ContentPresenter x:Name="PART_Header"  VerticalAlignment="Center" Margin="5"
+                              ContentTemplate="{TemplateBinding HeaderTemplate}"
+                              Content="{TemplateBinding Header}" />
+            <ItemsPresenter Grid.Column="1" VerticalAlignment="Center"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" TargetName="_MainGrid" Value="Cyan"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="_TreeViewItemSubLevelTemplate" TargetType="{x:Type c:TreeViewItemEx}">
+        <Grid Name="_MainGrid" Background="DarkRed" Margin="5">
+            <ContentPresenter x:Name="PART_Header" Margin="5"
+                              ContentTemplate="{TemplateBinding HeaderTemplate}"
+                              Content="{TemplateBinding Header}" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" TargetName="_MainGrid" Value="Yellow"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="_TreeViewItemStyle" TargetType="{x:Type c:TreeViewItemEx}">
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
@@ -32,40 +63,20 @@
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type TreeViewItem}">
-                    <Grid Name="_MainGrid" Background="Red" Margin="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <ContentPresenter x:Name="PART_Header"  VerticalAlignment="Center" Margin="5"
-                              ContentTemplate="{TemplateBinding HeaderTemplate}"
-                              Content="{TemplateBinding Header}" />
-                        <ItemsPresenter Grid.Column="1" VerticalAlignment="Center"/>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" TargetName="_MainGrid" Value="Cyan"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <!--<Style.Triggers>
+        <Setter Property="Template" Value="{StaticResource _TreeViewItemTopLevelTemplate}" />
+        <Style.Triggers>
             <Trigger Property="IsTopLevel" Value="False">
                 <Setter Property="Template" Value="{StaticResource _TreeViewItemSubLevelTemplate}"/>
             </Trigger>
-        </Style.Triggers>-->
+        </Style.Triggers>
     </Style>
 
-    <Style TargetType="{x:Type TreeView}">
+    <Style TargetType="{x:Type c:TreeViewEx}">
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="ItemContainerStyle" Value="{StaticResource _TreeViewItemStyle}"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type TreeView}">
+                <ControlTemplate TargetType="{x:Type c:TreeViewEx}">
                     <Grid>
                         <ScrollViewer x:Name="PART_ItemsScrollViewer"
                                       Background="Transparent"
@@ -79,6 +90,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
 </ResourceDictionary>

@@ -113,7 +113,7 @@
     <!-- Simple Expander (Pill Style)
 	 This uses the Simpler ExpanderToggleButton. It sets Visibility on the ContentPresenter to expand
 	 Limitations : The Simple Expander only expands down -->
-    <Style x:Key="_ExpanderPillStyle" TargetType="{x:Type Expander}">
+    <Style x:Key="ExpanderPillStyle" TargetType="{x:Type Expander}">
         <Setter Property="Background" Value="#FF333333"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -200,7 +200,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="_ExpanderToolBarStyle" TargetType="{x:Type Expander}">
+    <Style x:Key="ExpanderToolBarStyle" TargetType="{x:Type Expander}">
         <Setter Property="Background" Value="White"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
