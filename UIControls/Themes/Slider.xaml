@@ -11,6 +11,7 @@
     <SolidColorBrush x:Key="SolidBorderBrush" Color="Black"/>
     <SolidColorBrush x:Key="LightBorderBrush" Color="#AAA"/>
     <SolidColorBrush x:Key="LightColorBrush" Color="#DDD"/>
+    <SolidColorBrush x:Key="GlyphBrush" Color="#FF444444"/>
 
     <!--Simple Simple SliderThumb - The Thumb is the draggable part of a Slider-->
     <Style x:Key="SimpleSliderThumb"  TargetType="{x:Type Thumb}">
@@ -21,14 +22,14 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
                     <Grid>
-                        <Ellipse x:Name="Ellipse" Fill="{DynamicResource NormalBrush}" Stroke="{DynamicResource NormalBorderBrush}" StrokeThickness="1"/>
+                        <Ellipse x:Name="Ellipse" Fill="{StaticResource NormalBrush}" Stroke="{StaticResource NormalBorderBrush}" StrokeThickness="1"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Fill" Value="{DynamicResource MouseOverBrush}" TargetName="Ellipse"/>
+                            <Setter Property="Fill" Value="{StaticResource MouseOverBrush}" TargetName="Ellipse"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Fill" Value="{DynamicResource DisabledBackgroundBrush}" TargetName="Ellipse"/>
+                            <Setter Property="Fill" Value="{StaticResource DisabledBackgroundBrush}" TargetName="Ellipse"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -40,8 +41,8 @@
 	Similiar to ScrollBar this template uses Track to layout the draggable Thumb which has an up and down repeat button
 	It uses Simple SliderThumb and SimpleScrollRepeatButtonStyle for the page up and down repeat buttons -->
     <Style TargetType="{x:Type Slider}">
-        <Setter Property="Background" Value="{DynamicResource NormalBorderBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}"/>
+        <Setter Property="Background" Value="{StaticResource NormalBorderBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource NormalBorderBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Slider}">
@@ -53,20 +54,20 @@
                         </Grid.RowDefinitions>
 
                         <!-- TickBar shows the ticks for Slider -->
-                        <TickBar Visibility="Collapsed" x:Name="TopTick" Height="4" SnapsToDevicePixels="True" Placement="Top" Fill="{DynamicResource GlyphBrush}"/>
+                        <TickBar Visibility="Collapsed" x:Name="TopTick" Height="4" SnapsToDevicePixels="True" Placement="Top" Fill="{StaticResource GlyphBrush}"/>
                         <Border Grid.Row="1" Margin="0" x:Name="Border" Height="4" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"/>
 
                         <!-- The Track lays out the repeat buttons and thumb -->
                         <Track Grid.Row="1" x:Name="PART_Track">
                             <Track.Thumb>
-                                <Thumb Style="{DynamicResource SimpleSliderThumb}"/>
+                                <Thumb Style="{StaticResource SimpleSliderThumb}"/>
                             </Track.Thumb>
                             <Track.IncreaseRepeatButton>
-                                <RepeatButton Style="{DynamicResource SimpleScrollRepeatButtonStyle}" Command="Slider.IncreaseLarge"/>
+                                <RepeatButton Style="{StaticResource SimpleScrollRepeatButtonStyle}" Command="Slider.IncreaseLarge"/>
                             </Track.IncreaseRepeatButton>
                             <Track.DecreaseRepeatButton>
-                                <RepeatButton Style="{DynamicResource SimpleScrollRepeatButtonStyle}" Command="Slider.DecreaseLarge"/>
+                                <RepeatButton Style="{StaticResource SimpleScrollRepeatButtonStyle}" Command="Slider.DecreaseLarge"/>
                             </Track.DecreaseRepeatButton>
                         </Track>
 
@@ -84,8 +85,8 @@
                             <Setter Property="Visibility" Value="Visible" TargetName="BottomTick"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Background" Value="{DynamicResource DisabledBackgroundBrush}" TargetName="Border"/>
-                            <Setter Property="BorderBrush" Value="{DynamicResource DisabledBorderBrush}" TargetName="Border"/>
+                            <Setter Property="Background" Value="{StaticResource DisabledBackgroundBrush}" TargetName="Border"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource DisabledBorderBrush}" TargetName="Border"/>
                         </Trigger>
 
                         <!-- Use a rotation to create a Vertical Slider form the default Horizontal -->

@@ -17,8 +17,8 @@
 
     <!-- Simple Menu - This template uses a StackPanel to layout MenuItems -->
     <Style TargetType="{x:Type Menu}">
-        <Setter Property="Background" Value="{DynamicResource LightBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}"/>
+        <Setter Property="Background" Value="{StaticResource LightBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource NormalBorderBrush}"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -30,8 +30,8 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{DynamicResource DisabledBackgroundBrush}" TargetName="Border"/>
-                            <Setter Property="BorderBrush" Value="{DynamicResource DisabledBorderBrush}" TargetName="Border"/>
+                            <Setter Property="Background" Value="{StaticResource DisabledBackgroundBrush}" TargetName="Border"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource DisabledBorderBrush}" TargetName="Border"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -47,7 +47,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Separator}">
-                    <Border BorderBrush="{DynamicResource SolidBorderBrush}" BorderThickness="1"/>
+                    <Border BorderBrush="{StaticResource SolidBorderBrush}" BorderThickness="1"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -61,7 +61,7 @@
         <Setter Property="HorizontalContentAlignment" Value="{Binding Path=HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
         <Setter Property="VerticalContentAlignment" Value="{Binding Path=VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}"/>
+        <Setter Property="Foreground" Value="{StaticResource {x:Static SystemColors.MenuTextBrushKey}}"/>
         <Setter Property="Padding" Value="4"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -106,11 +106,11 @@
                             <Popup IsOpen="{Binding Path=IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
                                    Placement="Right" x:Name="SubMenuPopup"
                                    Focusable="false" AllowsTransparency="true"
-                                   PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
+                                   PopupAnimation="{StaticResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
                                    VerticalOffset="-3">
                                 <Grid x:Name="SubMenu">
-                                    <Border x:Name="SubMenuBorder" Background="{DynamicResource WindowBackgroundBrush}"
-                                            BorderBrush="{DynamicResource SolidBorderBrush}" BorderThickness="1"/>
+                                    <Border x:Name="SubMenuBorder" Background="{StaticResource WindowBackgroundBrush}"
+                                            BorderBrush="{StaticResource SolidBorderBrush}" BorderThickness="1"/>
 
                                     <!-- StackPanel holds children of the menu. This is set bu IsItemsHost=True -->
                                     <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle"/>
@@ -164,16 +164,16 @@
                         <Trigger Property="AllowsTransparency" SourceName="SubMenuPopup" Value="true">
                             <Setter Property="Margin" Value="0,0,3,3" TargetName="SubMenu"/>
                             <Setter Property="SnapsToDevicePixels" Value="true" TargetName="SubMenu"/>
-                            <Setter Property="BitmapEffect" Value="{DynamicResource PopupDropShadow}" TargetName="SubMenuBorder"/>
+                            <Setter Property="BitmapEffect" Value="{StaticResource PopupDropShadow}" TargetName="SubMenuBorder"/>
                         </Trigger>
 
                         <!-- Using the system colors for the Menu Highlight and IsEnabled-->
                         <Trigger Property="IsHighlighted" Value="true">
-                            <Setter Property="Background" Value="{DynamicResource MouseOverBrush}" TargetName="Border"/>
+                            <Setter Property="Background" Value="{StaticResource MouseOverBrush}" TargetName="Border"/>
                             <Setter Property="Foreground" Value="Black"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            <Setter Property="Foreground" Value="{StaticResource {x:Static SystemColors.GrayTextBrushKey}}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

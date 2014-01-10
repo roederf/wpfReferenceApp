@@ -18,7 +18,7 @@
     </Window.Resources>
     <TabControl>
         <TabItem Header="Button">
-            <Grid>
+            <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
@@ -40,27 +40,21 @@
                 <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource AddButtonStyle}" Content="Add"/>
                 <Label Grid.Row="2" Grid.Column="0" Content="Close Button"/>
                 <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource CloseButtonStyle}" Content="Close"/>
-                <Label Grid.Row="3" Grid.Column="0" Content="Icon Button"/>
-                <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource IconButtonStyle}" Content="Icon"/>
-                <Label Grid.Row="4" Grid.Column="0" Content="Radio Button"/>
-                <RadioButton Grid.Row="4" Grid.Column="1"/>
-                <Label Grid.Row="5" Grid.Column="0" Content="Content driven Radio Button"/>
-                <RadioButton Grid.Row="5" Grid.Column="1" Style="{StaticResource ContentRadioButtonStyle}"/>
-                <Label Grid.Row="6" Grid.Column="0" Content="Simple Toggle Button"/>
-                <ToggleButton Grid.Row="6" Grid.Column="1"/>
-                <Label Grid.Row="7" Grid.Column="0" Content="Simple ON/OFF Toggle Button"/>
-                <ToggleButton Grid.Row="7" Grid.Column="1" Style="{StaticResource OnOffToggleButtonStyle}"/>
-                <Label Grid.Row="8" Grid.Column="0" Content="Icon Toggle Button"/>
-                <ToggleButton Grid.Row="8" Grid.Column="1" Style="{StaticResource IconToggleButtonStyle}"/>
+                <Label Grid.Row="3" Grid.Column="0" Content="Radio Button"/>
+                <RadioButton Grid.Row="3" Grid.Column="1" Content="Label"/>
+                <Label Grid.Row="4" Grid.Column="0" Content="Simple Toggle Button"/>
+                <ToggleButton Grid.Row="4" Grid.Column="1" Content="Toggle"/>
+                <Label Grid.Row="5" Grid.Column="0" Content="Simple ON/OFF Toggle Button"/>
+                <ToggleButton Grid.Row="5" Grid.Column="1" Style="{StaticResource OnOffToggleButtonStyle}"/>
             </Grid>
         </TabItem>
         <TabItem Header="Box">
-            <Grid>
+            <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -69,15 +63,23 @@
                 <Label Grid.Row="0" Grid.Column="0" Content="Simple TextBox"/>
                 <TextBox Grid.Row="0" Grid.Column="1"/>
                 <Label Grid.Row="1" Grid.Column="0" Content="Simple ComboBox"/>
-                <ComboBox Grid.Row="1" Grid.Column="1"/>
+                <ComboBox Grid.Row="1" Grid.Column="1">
+                    <ComboBoxItem Content="Option 1"/>
+                    <ComboBoxItem Content="Option 2"/>
+                    <ComboBoxItem Content="Option 3"/>
+                </ComboBox>
                 <Label Grid.Row="2" Grid.Column="0" Content="Simple CheckBox"/>
                 <CheckBox Grid.Row="2" Grid.Column="1"/>
-                <Label Grid.Row="3" Grid.Column="0" Content="ListBox TODO XAML"/>
-                <ListBox Grid.Row="3" Grid.Column="1"/>
+                <Label Grid.Row="3" Grid.Column="0" Content="ListBox"/>
+                <ListBox Grid.Row="3" Grid.Column="1">
+                    <ListBoxItem Content="Item 1"/>
+                    <ListBoxItem Content="Item 2"/>
+                    <ListBoxItem Content="Item 3"/>
+                </ListBox>
             </Grid>
         </TabItem>
-        <TabItem Header="Components">
-            <Grid>
+        <!--<TabItem Header="Components">
+            <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
@@ -103,12 +105,6 @@
                     <Separator/>
                     <MenuItem Header="Paste"/>
                 </Menu>
-                <Label Grid.Row="4" Grid.Column="0" Content="TabControl + TabItem"/>
-                <TabControl Grid.Row="4" Grid.Column="1">
-                    <TabItem Header="File"/>
-                    <TabItem Header="Edit"/>
-                    <TabItem Header="View"/>
-                </TabControl>
                 <Label Grid.Row="5" Grid.Column="0" Content="ScrollViewer + ScrollBars"/>
                 <ScrollViewer Grid.Row="5" Grid.Column="1" HorizontalScrollBarVisibility="Auto">
                         <Grid Width="500" Height="500" Background="YellowGreen"/>
@@ -116,7 +112,7 @@
             </Grid>
         </TabItem>
         <TabItem Header="Flex Components">
-            <Grid>
+            <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="100"/>
                     <RowDefinition Height="100"/>
@@ -135,10 +131,10 @@
                 <Expander Grid.Row="1" Grid.Column="1" Header="Expander" Style="{StaticResource ExpanderPillStyle}">
                     <Grid Width="50" Height="50" Background="YellowGreen"/>
                 </Expander>
-                <!--<Label Grid.Row="2" Grid.Column="0" Content="Expander ToolBar"/>
+                <Label Grid.Row="2" Grid.Column="0" Content="Expander ToolBar"/>
                 <Expander Grid.Row="2" Grid.Column="1" Header="Expander" Style="{StaticResource ExpanderToolBarStyle}">
                     <Grid Width="50" Height="50" Background="YellowGreen"/>
-                </Expander>-->
+                </Expander>
                 <Label Grid.Row="3" Grid.Column="0" Content="Treeview"/>
                 <TreeView Grid.Row="3" Grid.Column="1">
                     <TreeViewItem Header="item1">
@@ -150,7 +146,7 @@
                     </TreeViewItem>
                 </TreeView>
             </Grid>
-        </TabItem>
+        </TabItem>-->
         <TabItem Header="Mockup App">
             <Grid>
                 <Grid.RowDefinitions>

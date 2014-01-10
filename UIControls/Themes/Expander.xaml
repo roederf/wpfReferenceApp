@@ -33,20 +33,20 @@
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Fill" Value="{DynamicResource MouseOverBrush}" TargetName="Rectangle"/>
+                <Setter Property="Fill" Value="{StaticResource MouseOverBrush}" TargetName="Rectangle"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="true">
-                <Setter Property="Fill" Value="{DynamicResource PressedBrush}" TargetName="Rectangle"/>
+                <Setter Property="Fill" Value="{StaticResource PressedBrush}" TargetName="Rectangle"/>
             </Trigger>
             <Trigger Property="IsChecked" Value="true">
                 <Setter Property="Visibility" Value="Visible" TargetName="Down_Arrow"/>
                 <Setter Property="Visibility" Value="Collapsed" TargetName="Up_Arrow"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Fill" Value="{DynamicResource DisabledBackgroundBrush}" TargetName="Rectangle"/>
-                <Setter Property="Stroke" Value="{DynamicResource DisabledBorderBrush}" TargetName="Rectangle"/>
-                <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}"/>
-                <Setter Property="Fill" Value="{DynamicResource DisabledForegroundBrush}" TargetName="Up_Arrow"/>
+                <Setter Property="Fill" Value="{StaticResource DisabledBackgroundBrush}" TargetName="Rectangle"/>
+                <Setter Property="Stroke" Value="{StaticResource DisabledBorderBrush}" TargetName="Rectangle"/>
+                <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}"/>
+                <Setter Property="Fill" Value="{StaticResource DisabledForegroundBrush}" TargetName="Up_Arrow"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -82,7 +82,7 @@
                                     <ColumnDefinition Width="36"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <ToggleButton Template="{DynamicResource ExpanderToggleButton}" Background="{TemplateBinding Background}"
+                                <ToggleButton Template="{StaticResource ExpanderToggleButton}" Background="{TemplateBinding Background}"
                                               IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                               OverridesDefaultStyle="True" Height="36"/>
                                 <ContentPresenter Content="{TemplateBinding Header}" TextBlock.Foreground="#FF333333"
@@ -100,9 +100,9 @@
                             <Setter Property="Visibility" Value="Visible" TargetName="ExpandSite"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{DynamicResource DisabledBackgroundBrush}" TargetName="Border"/>
-                            <Setter Property="BorderBrush" Value="{DynamicResource DisabledBorderBrush}" TargetName="Border"/>
-                            <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}"/>
+                            <Setter Property="Background" Value="{StaticResource DisabledBackgroundBrush}" TargetName="Border"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource DisabledBorderBrush}" TargetName="Border"/>
+                            <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -145,10 +145,10 @@
                                                 <Setter Property="Visibility" Value="Collapsed" TargetName="Up_Arrow"/>
                                             </Trigger>
                                             <Trigger Property="IsEnabled" Value="False">
-                                                <Setter Property="Fill" Value="{DynamicResource DisabledBackgroundBrush}" TargetName="Rectangle"/>
-                                                <Setter Property="Stroke" Value="{DynamicResource DisabledBorderBrush}" TargetName="Rectangle"/>
-                                                <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}"/>
-                                                <Setter Property="Fill" Value="{DynamicResource DisabledForegroundBrush}" TargetName="Up_Arrow"/>
+                                                <Setter Property="Fill" Value="{StaticResource DisabledBackgroundBrush}" TargetName="Rectangle"/>
+                                                <Setter Property="Stroke" Value="{StaticResource DisabledBorderBrush}" TargetName="Rectangle"/>
+                                                <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}"/>
+                                                <Setter Property="Fill" Value="{StaticResource DisabledForegroundBrush}" TargetName="Up_Arrow"/>
                                             </Trigger>
                                         </ControlTemplate.Triggers>
                                     </ControlTemplate>
@@ -190,9 +190,9 @@
                             <Setter Property="Visibility" Value="Visible" TargetName="ExpandSite"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{DynamicResource DisabledBackgroundBrush}" TargetName="Border"/>
-                            <Setter Property="BorderBrush" Value="{DynamicResource DisabledBorderBrush}" TargetName="Border"/>
-                            <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}"/>
+                            <Setter Property="Background" Value="{StaticResource DisabledBackgroundBrush}" TargetName="Border"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource DisabledBorderBrush}" TargetName="Border"/>
+                            <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -217,7 +217,7 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Margin="4" Orientation="Horizontal">
-                            <ToggleButton Name="_toggleButton" Style="{DynamicResource IconToggleButtonStyle}" Background="Black" Foreground="White"
+                            <ToggleButton Name="_toggleButton" Style="{StaticResource IconToggleButtonStyle}" Background="Black" Foreground="White"
                                           IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                           OverridesDefaultStyle="True" Content="{TemplateBinding Header}"/>
                             <Path Name="_arrow" Data="M0,0 L11,10 L0,20 Z" Width="11" Height="20" Fill="Black" VerticalAlignment="Center"
@@ -236,7 +236,7 @@
                             <Setter Property="Visibility" Value="Visible" TargetName="ExpandSite"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

@@ -25,8 +25,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Grid>
-                        <Border x:Name="Border" Background="{DynamicResource WindowBackgroundBrush}"
-                                BorderBrush="{DynamicResource SolidBorderBrush}" BorderThickness="1">
+                        <Border x:Name="Border" Background="{StaticResource WindowBackgroundBrush}"
+                                BorderBrush="{StaticResource SolidBorderBrush}" BorderThickness="1">
 
                             <!-- The implementation places the Content into the ScrollViewer. It must be named PART_ContentHost for the control to function -->
                             <ScrollViewer x:Name="PART_ContentHost" Background="{TemplateBinding Background}"
@@ -36,9 +36,9 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{DynamicResource DisabledBackgroundBrush}" TargetName="Border"/>
-                            <Setter Property="BorderBrush" Value="{DynamicResource DisabledBackgroundBrush}" TargetName="Border"/>
-                            <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}"/>
+                            <Setter Property="Background" Value="{StaticResource DisabledBackgroundBrush}" TargetName="Border"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource DisabledBackgroundBrush}" TargetName="Border"/>
+                            <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
