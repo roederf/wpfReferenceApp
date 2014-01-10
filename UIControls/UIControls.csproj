@@ -121,8 +121,40 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\TreeViewEx.cs" />
-    <Compile Include="Controls\TreeViewItemEx.cs" />
+    <Compile Include="Base\RelayCommand.cs" />
+    <Compile Include="Controls\AccordeonControl.cs" />
+    <Compile Include="Controls\AccordeonItem.cs" />
+    <Compile Include="Controls\AdornerPopup.cs" />
+    <Compile Include="Controls\AnalogAxisControl.cs" />
+    <Compile Include="Controls\ColorPicker.cs" />
+    <Compile Include="Utilities\ColorUtilities.cs" />
+    <Compile Include="Helper\DoubleTapHelper.cs" />
+    <Compile Include="Helper\DragDropHelper.cs" />
+    <Compile Include="Controls\DraggedAdorner.cs" />
+    <Compile Include="Controls\DropTargetContentControl.cs" />
+    <Compile Include="Controls\InsertionAdorner.cs" />
+    <Compile Include="Controls\MagnifierControl.cs" />
+    <Compile Include="Controls\OverlayAdornerDecorator.cs" />
+    <Compile Include="Controls\RangeSlider.cs" />
+    <Compile Include="Helper\ScrollViewerHelper.cs" />
+    <Compile Include="Controls\SearchBox.cs" />
+    <Compile Include="Helper\TextBoxHelper.cs" />
+    <Compile Include="Components\ThumbnailSlider.cs" />
+    <Compile Include="Helper\TouchEventHelper.cs" />
+    <Compile Include="Controls\Viewport.cs" />
+    <Compile Include="Components\Wizard.cs" />
+    <Compile Include="Controls\WizardPage.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\EnumToVisibilityConverter.cs" />
+    <Compile Include="Converters\InvertBoolConverter.cs" />
+    <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Converters\StringToDoubleConverter.cs" />
+    <Compile Include="Effects\ColorRangeQuad.cs" />
+    <Compile Include="Effects\ConeGradient.cs" />
+    <Compile Include="Effects\HSVCircle.cs" />
+    <Compile Include="Effects\HSVRectangle.cs" />
+    <Compile Include="Effects\LineGrid.cs" />
+    <Compile Include="Effects\PixelZoom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -140,11 +172,25 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Effects\ColorRangeQuad.ps" />
+    <None Include="Effects\ConeGradient.ps" />
+    <None Include="Effects\HSVCircle.ps" />
+    <None Include="Effects\HSVRectangle.ps" />
+    <None Include="Effects\LineGrid.ps" />
+    <None Include="Effects\PixelZoom.ps" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Effects\ColorRangeQuad.fx" />
+    <Content Include="Effects\ConeGradient.fx" />
+    <Content Include="Effects\HSVCircle.fx" />
+    <Content Include="Effects\HSVRectangle.fx" />
+    <Content Include="Effects\LineGrid.fx" />
+    <Content Include="Effects\PixelZoom.fx" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

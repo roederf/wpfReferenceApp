@@ -128,6 +128,10 @@
       <Project>{a028ec9b-b81c-4e1d-869a-16ebf929b5ad}</Project>
       <Name>ModelLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UIControls\UIControls.csproj">
+      <Project>{3c7c8c24-d1c3-405c-a0c8-9d9a32da9189}</Project>
+      <Name>UIControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UI\UI.csproj">
       <Project>{49435173-d143-40f7-a2ae-0a5e52a21dbf}</Project>
       <Name>UI</Name>
