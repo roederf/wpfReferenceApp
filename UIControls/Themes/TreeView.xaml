@@ -35,7 +35,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TreeViewItem}">
-                    <Grid Name="_MainGrid" Background="Red" Margin="2">
+                    <Grid Name="_MainGrid" Background="White" Margin="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>

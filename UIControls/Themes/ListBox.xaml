@@ -32,8 +32,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <Grid Name="_Background" Background="White">
-                        <Border Name="_SelectedBackground" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{StaticResource PressedBrush}"
-                                Visibility="Collapsed"/>
+                        <Border Name="_SelectedBackground" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{StaticResource PressedBrush}" Visibility="Collapsed"/>
                         <ContentPresenter Name="_Content" VerticalAlignment="Center" Margin="8,2"/>
                     </Grid>
                     <ControlTemplate.Triggers>

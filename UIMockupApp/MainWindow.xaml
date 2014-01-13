@@ -63,13 +63,13 @@
                 <Label Grid.Row="0" Grid.Column="0" Content="Simple TextBox"/>
                 <TextBox Grid.Row="0" Grid.Column="1"/>
                 <Label Grid.Row="1" Grid.Column="0" Content="Simple ComboBox"/>
-                <ComboBox Grid.Row="1" Grid.Column="1">
+                <ComboBox Grid.Row="1" Grid.Column="1" SelectedIndex="0">
                     <ComboBoxItem Content="Option 1"/>
                     <ComboBoxItem Content="Option 2"/>
                     <ComboBoxItem Content="Option 3"/>
                 </ComboBox>
                 <Label Grid.Row="2" Grid.Column="0" Content="Simple CheckBox"/>
-                <CheckBox Grid.Row="2" Grid.Column="1"/>
+                <CheckBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
                 <Label Grid.Row="3" Grid.Column="0" Content="ListBox"/>
                 <ListBox Grid.Row="3" Grid.Column="1">
                     <ListBoxItem Content="Item 1"/>
@@ -78,7 +78,7 @@
                 </ListBox>
             </Grid>
         </TabItem>
-        <!--<TabItem Header="Components">
+        <TabItem Header="Components">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
@@ -100,10 +100,12 @@
                 <ProgressBar Grid.Row="2" Grid.Column="1"/>
                 <Label Grid.Row="3" Grid.Column="0" Content="Menu"/>
                 <Menu Grid.Row="3" Grid.Column="1">
-                    <MenuItem Header="Cut"/>
-                    <MenuItem Header="Copy"/>
-                    <Separator/>
-                    <MenuItem Header="Paste"/>
+                    <MenuItem Header="Edit">
+                        <MenuItem Header="Cut"/>
+                        <MenuItem Header="Copy"/>
+                        <Separator/>
+                        <MenuItem Header="Paste"/>
+                    </MenuItem>
                 </Menu>
                 <Label Grid.Row="5" Grid.Column="0" Content="ScrollViewer + ScrollBars"/>
                 <ScrollViewer Grid.Row="5" Grid.Column="1" HorizontalScrollBarVisibility="Auto">
@@ -127,14 +129,6 @@
                 <Expander Grid.Row="0" Grid.Column="1" Header="Expander">
                     <Grid Width="50" Height="50" Background="YellowGreen"/>
                 </Expander>
-                <Label Grid.Row="1" Grid.Column="0" Content="Expander Pill"/>
-                <Expander Grid.Row="1" Grid.Column="1" Header="Expander" Style="{StaticResource ExpanderPillStyle}">
-                    <Grid Width="50" Height="50" Background="YellowGreen"/>
-                </Expander>
-                <Label Grid.Row="2" Grid.Column="0" Content="Expander ToolBar"/>
-                <Expander Grid.Row="2" Grid.Column="1" Header="Expander" Style="{StaticResource ExpanderToolBarStyle}">
-                    <Grid Width="50" Height="50" Background="YellowGreen"/>
-                </Expander>
                 <Label Grid.Row="3" Grid.Column="0" Content="Treeview"/>
                 <TreeView Grid.Row="3" Grid.Column="1">
                     <TreeViewItem Header="item1">
@@ -146,7 +140,7 @@
                     </TreeViewItem>
                 </TreeView>
             </Grid>
-        </TabItem>-->
+        </TabItem>
         <TabItem Header="Mockup App">
             <Grid>
                 <Grid.RowDefinitions>

@@ -25,8 +25,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Grid>
-                        <Border x:Name="Border" Background="{StaticResource WindowBackgroundBrush}"
-                                BorderBrush="{StaticResource SolidBorderBrush}" BorderThickness="1">
+                        <Border x:Name="Border" Background="{StaticResource WindowBackgroundBrush}">
 
                             <!-- The implementation places the Content into the ScrollViewer. It must be named PART_ContentHost for the control to function -->
                             <ScrollViewer x:Name="PART_ContentHost" Background="{TemplateBinding Background}"

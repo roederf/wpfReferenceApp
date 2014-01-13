@@ -37,7 +37,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
-            <Rectangle Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" x:Name="Field" VerticalAlignment="Stretch" Width="Auto" Height="Auto" StrokeThickness="2" Fill="{StaticResource NormalBrush}" Stroke="{StaticResource NormalBorderBrush}"/>
+            <Rectangle Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" x:Name="Field" VerticalAlignment="Stretch" Width="Auto" Height="Auto" StrokeThickness="2"
+                       Fill="{StaticResource NormalBrush}" Stroke="{StaticResource NormalBorderBrush}"/>
             <Rectangle Grid.Column="1" HorizontalAlignment="Stretch" x:Name="Rectangle" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Fill="{StaticResource NormalBrush}" Margin="2"/>
             <Path Grid.Column="1" HorizontalAlignment="Center" x:Name="Arrow" VerticalAlignment="Center" Fill="{StaticResource GlyphBrush}" Data="M 0 0 L 4 4 L 8 0 Z"/>
         </Grid>
@@ -83,8 +84,10 @@
 
                         <!-- The ToggleButton is databound to the ComboBox itself to toggle IsDropDownOpen -->
                         <ToggleButton Template="{StaticResource ComboBoxToggleButton}" x:Name="ToggleButton" Focusable="false" IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press" Grid.Column="1"/>
-                        <ContentPresenter HorizontalAlignment="Left" Margin="8,4,23,4" x:Name="ContentSite" VerticalAlignment="Center" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" IsHitTestVisible="False"/>
-
+                        <Border BorderBrush="{StaticResource NormalBorderBrush}" BorderThickness="2,2,0,2" Height="34">
+                            <ContentPresenter HorizontalAlignment="Left" Margin="8,4,23,4" x:Name="ContentSite" VerticalAlignment="Center" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" IsHitTestVisible="False"/>
+                        </Border>
+                        
                         <!-- The TextBox must be named PART_EditableTextBox or ComboBox will not recognize it -->
                         <TextBox Visibility="Hidden" Template="{StaticResource ComboBoxTextBox}"
                                  HorizontalAlignment="Left" Margin="8,4,23,4"

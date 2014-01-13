@@ -2,8 +2,21 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- LightBrush is used for content areas such as Menu, Tab Control background -->
-    <SolidColorBrush x:Key="LightBrush" Color="#FFCCCCCC"/>
+    <SolidColorBrush x:Key="LightBrush" Color="#FFFFFFFF"/>
+    
+    <!-- NormalBrush is used as the Background for SimpleButton, SimpleRepeatButton -->
+    <SolidColorBrush x:Key="NormalBrush" Color="White"/>
+    <SolidColorBrush x:Key="NormalBorderBrush" Color="#FF555555"/>
 
+    <!-- MouseOverBrush is used for MouseOver in Button, Radio Button, CheckBox -->
+    <SolidColorBrush x:Key="MouseOverBrush" Color="#FF3399FF"/>
+
+    <!-- Used for background of ScrollViewer, TreeView, ListBox, Expander, TextBox, Tab Control -->
+    <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FFF"/>
+
+    <!-- PressedBrush is used for Pressed in Button, Radio Button, CheckBox -->
+    <SolidColorBrush x:Key="PressedBrush" Color="#FF3399FF"/>
+    <SolidColorBrush x:Key="PressedBorderBrush" Color="Black"/>
     <!-- Disabled Brushes are used for the Disabled look of each control -->
     <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#FF888888"/>
     <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="#FFEEEEEE"/>
@@ -25,7 +38,7 @@
                 <ControlTemplate TargetType="{x:Type Menu}">
                     <Grid>
                         <Border Margin="1" x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"/>
+                                BorderThickness="{TemplateBinding BorderThickness}" Height="34"/>
                         <StackPanel Background="{TemplateBinding Background}" IsItemsHost="True" ClipToBounds="True" Orientation="Horizontal"/>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -62,7 +75,7 @@
         <Setter Property="VerticalContentAlignment" Value="{Binding Path=VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{StaticResource {x:Static SystemColors.MenuTextBrushKey}}"/>
-        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Height" Value="34"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MenuItem}">
@@ -82,7 +95,7 @@
                             </Grid.ColumnDefinitions>
 
                             <!-- ContentPresenter to show an Icon if needed -->
-                            <ContentPresenter Margin="4,0,2,0" x:Name="Icon" VerticalAlignment="Center" ContentSource="Icon"/>
+                            <ContentPresenter Margin="8,0" x:Name="Icon" VerticalAlignment="Center" ContentSource="Icon"/>
 
                             <!-- Glyph is a checkmark if needed for a checkable menu -->
                             <Grid Visibility="Hidden" Margin="4,0,2,0" x:Name="GlyphPanel" VerticalAlignment="Center">
@@ -92,6 +105,7 @@
 
                             <!-- Content for the menu text etc -->
                             <ContentPresenter Grid.Column="1"
+                                              VerticalAlignment="Center" HorizontalAlignment="Center"
                                               Margin="{TemplateBinding Padding}"
                                               x:Name="HeaderHost" RecognizesAccessKey="True"
                                               ContentSource="Header"/>
@@ -157,6 +171,7 @@
 
                         <!-- The GlyphPanel contains the CheckMark -->
                         <Trigger Property="IsChecked" Value="true">
+                            <Setter TargetName="HeaderHost" Property="TextBlock.Foreground" Value="White"/>
                             <Setter Property="Visibility" Value="Visible" TargetName="GlyphPanel"/>
                             <Setter Property="Visibility" Value="Collapsed" TargetName="Icon"/>
                         </Trigger>
@@ -169,6 +184,7 @@
 
                         <!-- Using the system colors for the Menu Highlight and IsEnabled-->
                         <Trigger Property="IsHighlighted" Value="true">
+                            <Setter TargetName="HeaderHost" Property="TextBlock.Foreground" Value="White"/>
                             <Setter Property="Background" Value="{StaticResource MouseOverBrush}" TargetName="Border"/>
                             <Setter Property="Foreground" Value="Black"/>
                         </Trigger>
