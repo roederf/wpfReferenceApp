@@ -12,6 +12,8 @@ namespace ReferenceApplication.Base
     {
         private bool synchronizeModel = true;
         private bool updatingModel = false;
+
+        private static Stack<BaseViewModel> _viewModels = new Stack<BaseViewModel>();
         
         protected BaseViewModel()
         {
@@ -68,7 +70,39 @@ namespace ReferenceApplication.Base
         }
         #endregion
 
+        #region Property TransitionType 'Transition'
+        private TransitionType _Transition = TransitionType.Blend;
+        public TransitionType Transition
+        {
+            get { return _Transition; }
+            set
+            {
+                if (_Transition != value)
+                {
+                    _Transition = value;
+                    OnPropertyChanged("Transition");
+                }
+            }
+        }
+        #endregion
+        
 
+        protected void PushViewModel(BaseViewModel viewModel)
+        {
+            _viewModels.Push(App.CurrentApp.Shell as BaseViewModel);
+
+            App.CurrentApp.Shell = viewModel;
+        }
+
+        protected void PopViewModel()
+        {
+            if (_viewModels.Count > 0)
+            {
+                var vm = _viewModels.Pop();
+
+                App.CurrentApp.Shell = vm;
+            }
+        }
 
         virtual protected void initializeFromModel()
         {
@@ -126,5 +160,11 @@ namespace ReferenceApplication.Base
         protected virtual void OnDispose()
         {
         }
+    }
+
+    public enum TransitionType
+    {
+        Slide,
+        Blend
     }
 }

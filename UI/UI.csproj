@@ -47,7 +47,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContextFactory.cs" />
     <Compile Include="Interfaces\IEditViewModel.cs" />
     <Compile Include="Interfaces\IHomeViewModel.cs" />
     <Compile Include="ViewModelFactory.cs" />

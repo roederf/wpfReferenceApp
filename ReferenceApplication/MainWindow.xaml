@@ -4,6 +4,8 @@
         xmlns:ui="clr-namespace:UI;assembly=UI"
         xmlns:v="clr-namespace:UI.View;assembly=UI"
         xmlns:vm="clr-namespace:ReferenceApplication.ViewModel"
+        xmlns:c="clr-namespace:UIControls;assembly=UIControls"
+        
         Title="{Binding Name}" Height="350" Width="525">
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:LoginViewModel}">
@@ -17,6 +19,23 @@
         </DataTemplate>
     </Window.Resources>
     <Grid>
-        <ContentPresenter Content="{Binding Shell}" />
+        <c:TransitionControl Content="{Binding Shell}">
+            
+        </c:TransitionControl>
+        <Border Background="#88000000">
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsBusy}" Value="true">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <Border HorizontalAlignment="Center" VerticalAlignment="Center" Background="Black">
+                <TextBlock Text="Busy..."  Foreground="White" Margin="20"/>
+            </Border>
+        </Border>
     </Grid>
 </Window>

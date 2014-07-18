@@ -10,22 +10,18 @@ namespace BusinessLogicInterface
 {
     public interface IApplicationModel : INotifyPropertyChanged
     {
-        void Init();
+        bool Login();
 
-        void Login();
+        bool Logout();
 
-        void Logout();
+        bool OpenFile();
 
-        void OpenFile();
-
-        void CloseFile();
+        bool CloseFile();
 
         void CalculateValue(string propertyName);
 
         IFileItem CurrentFile { get; set; }
 
         bool UnsavedChanges { get; }
-
-        ApplicationState State { get; }
     }
 }

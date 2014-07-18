@@ -28,23 +28,23 @@ namespace ReferenceApplication.ViewModel
         {
             _appModel = App.CurrentApp.ApplicationModel;
             Model = _appModel.CurrentFile;
-            _appModel.PropertyChanged += _appModel_PropertyChanged;
+            //_appModel.PropertyChanged += _appModel_PropertyChanged;
         }
 
-        void _appModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "State")
-            {
-                if (_appModel.State == ApplicationState.Edit_Progress)
-                {
-                    BusyState = ViewModel.BusyState.Inactive;
-                }
-                else
-                {
-                    BusyState = ViewModel.BusyState.Active;
-                }
-            }
-        }
+        //void _appModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        //{
+        //    if (e.PropertyName == "State")
+        //    {
+        //        if (_appModel.State == ApplicationState.Edit_Progress)
+        //        {
+        //            BusyState = ViewModel.BusyState.Inactive;
+        //        }
+        //        else
+        //        {
+        //            BusyState = ViewModel.BusyState.Active;
+        //        }
+        //    }
+        //}
         
         protected override void initializeFromModel()
         {

@@ -12,14 +12,18 @@ namespace ReferenceApplication.Base
 {
     public class BackgroundCommand : ICommand
     {
-        private readonly Action<object> _backgroundExecute;
-        private readonly Action<object> _completedExecute;
+        private readonly Action<DoWorkEventArgs> _backgroundExecute;
+        private readonly Action<RunWorkerCompletedEventArgs> _completedExecute;
         private readonly Predicate<object> _canExecute;
         
         BackgroundWorker _worker;
         IEventAggregator eventAggregator;
 
-        public BackgroundCommand(Action<object> backgroundExecute, Action<object> completedExecute, Predicate<object> canExecute)
+        public static int BusyCount {get; private set;}
+
+        public static event EventHandler BusyCountChanged;
+        
+        public BackgroundCommand(Action<DoWorkEventArgs> backgroundExecute, Action<RunWorkerCompletedEventArgs> completedExecute, Predicate<object> canExecute)
         {
             _backgroundExecute = backgroundExecute;
             _completedExecute = completedExecute;
@@ -32,12 +36,22 @@ namespace ReferenceApplication.Base
         
         void _worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            _completedExecute(null);
+            BusyCount--;
+            if (BusyCountChanged != null)
+            {
+                BusyCountChanged(this, new EventArgs());
+            }
+            _completedExecute(e);
         }
 
         void _worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            _backgroundExecute(e.Argument);
+            BusyCount++;
+            if (BusyCountChanged != null)
+            {
+                BusyCountChanged(this, new EventArgs());
+            }
+            _backgroundExecute(e);
         }
 
         public event EventHandler CanExecuteChanged

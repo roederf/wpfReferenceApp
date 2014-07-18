@@ -4,6 +4,7 @@ using Microsoft.Practices.Prism.Events;
 using ReferenceApplication.Base;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace ReferenceApplication.ViewModel
         {
             get
             {
-                return _LogoutCommand ?? (_LogoutCommand = new RelayCommand<object>(OnLogoutCommand, CanLogout));
+                return _LogoutCommand ?? (_LogoutCommand = new BackgroundCommand(OnLogoutCommand, OnLogoutCompleted, CanLogout));
             }
         }
 
@@ -36,9 +37,17 @@ namespace ReferenceApplication.ViewModel
             return true;
         }
 
-        private void OnLogoutCommand(object param)
+        private void OnLogoutCommand(DoWorkEventArgs param)
         {
-            _appModel.Logout();
+            param.Result = _appModel.Logout();
+        }
+
+        private void OnLogoutCompleted(RunWorkerCompletedEventArgs param)
+        {
+            if ((bool)param.Result)
+            {
+                this.PopViewModel();
+            }
         }
         #endregion
 
@@ -48,7 +57,7 @@ namespace ReferenceApplication.ViewModel
         {
             get
             {
-                return _OpenFileCommand ?? (_OpenFileCommand = new RelayCommand<object>(OnOpenFileCommand, CanOpenFile));
+                return _OpenFileCommand ?? (_OpenFileCommand = new BackgroundCommand(OnOpenFileCommand, OnOpenFileCompleted, CanOpenFile));
             }
         }
 
@@ -57,9 +66,17 @@ namespace ReferenceApplication.ViewModel
             return true;
         }
 
-        private void OnOpenFileCommand(object param)
+        private void OnOpenFileCommand(DoWorkEventArgs param)
         {
-            _appModel.OpenFile();
+            param.Result = _appModel.OpenFile();
+        }
+
+        private void OnOpenFileCompleted(RunWorkerCompletedEventArgs param)
+        {
+            if ((bool)param.Result)
+            {
+                this.PushViewModel(new EditViewModel());
+            }
         }
         #endregion
     }

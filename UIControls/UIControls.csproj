@@ -115,6 +115,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\TransitionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\TreeView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -127,6 +131,7 @@
     <Compile Include="Controls\AdornerPopup.cs" />
     <Compile Include="Controls\AnalogAxisControl.cs" />
     <Compile Include="Controls\ColorPicker.cs" />
+    <Compile Include="Controls\TransitionControl.cs" />
     <Compile Include="Utilities\ColorUtilities.cs" />
     <Compile Include="Helper\DoubleTapHelper.cs" />
     <Compile Include="Helper\DragDropHelper.cs" />

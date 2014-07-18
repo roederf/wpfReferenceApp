@@ -4,6 +4,7 @@ using Microsoft.Practices.Prism.Events;
 using ReferenceApplication.Base;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,14 +23,14 @@ namespace ReferenceApplication.ViewModel
             _appModel = App.CurrentApp.ApplicationModel;
             Model = _appModel;
         }
-
+        
         #region Command 'LoginCommand', Parameter: object
         private ICommand _LoginCommand;
         public ICommand LoginCommand
         {
             get
             {
-                return _LoginCommand ?? (_LoginCommand = new RelayCommand<object>(OnLoginCommand, CanLogin));
+                return _LoginCommand ?? (_LoginCommand = new BackgroundCommand(OnLoginCommand, OnLoginCommandCompleted, CanLogin));
             }
         }
 
@@ -38,9 +39,17 @@ namespace ReferenceApplication.ViewModel
             return true;
         }
 
-        private void OnLoginCommand(object param)
+        private void OnLoginCommand(DoWorkEventArgs param)
         {
-            _appModel.Login();
+            param.Result = App.CurrentApp.ApplicationModel.Login();
+        }
+
+        private void OnLoginCommandCompleted(RunWorkerCompletedEventArgs param)
+        {
+            if ((bool)param.Result)
+            {
+                this.PushViewModel(new HomeViewModel());
+            }
         }
         #endregion
     }

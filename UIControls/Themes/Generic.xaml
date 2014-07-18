@@ -20,6 +20,7 @@
         <ResourceDictionary Source="TextBox.xaml"/>
         <ResourceDictionary Source="ToggleButton.xaml"/>
         <ResourceDictionary Source="TreeView.xaml"/>
+        <ResourceDictionary Source="TransitionControl.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

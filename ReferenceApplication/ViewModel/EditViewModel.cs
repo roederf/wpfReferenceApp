@@ -4,6 +4,7 @@ using Microsoft.Practices.Prism.Events;
 using ReferenceApplication.Base;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,7 +63,7 @@ namespace ReferenceApplication.ViewModel
         {
             get
             {
-                return _CloseFileCommand ?? (_CloseFileCommand = new RelayCommand<object>(OnCloseFileCommand, CanCloseFile));
+                return _CloseFileCommand ?? (_CloseFileCommand = new BackgroundCommand(OnCloseFileCommand, OnCloseFileCompleted, CanCloseFile));
             }
         }
 
@@ -71,9 +72,17 @@ namespace ReferenceApplication.ViewModel
             return true;
         }
 
-        private void OnCloseFileCommand(object param)
+        private void OnCloseFileCommand(DoWorkEventArgs param)
         {
-            _appModel.CloseFile();   
+            param.Result = _appModel.CloseFile();
+        }
+
+        private void OnCloseFileCompleted(RunWorkerCompletedEventArgs param)
+        {
+            if ((bool)param.Result)
+            {
+                this.PopViewModel();
+            }
         }
         #endregion
 

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="clr-namespace:UI.Interfaces"
              xmlns:ui="clr-namespace:UI"
-             ui:DataContextFactory.Interface="{x:Type i:IPropertyViewModel}"
+             ui:ViewModelFactory.Interface="{x:Type i:IPropertyViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>

@@ -24,7 +24,6 @@ namespace ReferenceApplication.ViewModel
             :base()
         {
             _appModel = App.CurrentApp.ApplicationModel;
-            _appModel.PropertyChanged += _appModel_PropertyChanged;
             Model = _appModel.CurrentFile;
 
             EventAggregator.GetEvent<PropertySelectionChangedEvent>().Subscribe(OnPropertySelectionChanged);
@@ -36,22 +35,7 @@ namespace ReferenceApplication.ViewModel
 
             EventAggregator.GetEvent<PropertySelectionChangedEvent>().Unsubscribe(OnPropertySelectionChanged);
         }
-
-        void _appModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "State")
-            {
-                if (_appModel.State == ApplicationState.Edit_Progress)
-                {
-                    BusyState = ViewModel.BusyState.Busy;
-                }
-                else
-                {
-                    BusyState = ViewModel.BusyState.Active;
-                }
-            }
-        }
-
+        
         void OnPropertySelectionChanged(string payload)
         {
             if (_selectedItem != null)

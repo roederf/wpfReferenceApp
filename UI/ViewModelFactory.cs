@@ -4,34 +4,24 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace UI
 {
-    public class ViewModelFactory
+    public class ViewModelFactory : DependencyObject
     {
         static Dictionary<Type, Type> _dict = new Dictionary<Type, Type>();
-        static Assembly viewModelAssembly;
-        static Assembly interfaceAssembly;
+        
 
         private static Type[] GetTypesInNamespace(Assembly assembly, string nameSpace)
         {
             return assembly.GetTypes().Where(t => String.Equals(t.Namespace, nameSpace, StringComparison.Ordinal)).ToArray();
         }
 
-        public static void SetViewmodelAssembly(Assembly a)
+        public static void RegisterInterfacesAndImplementations(Assembly viewModelAssembly, string viewModelNamespace, Assembly interfaceAssembly, string interfaceNamespace)
         {
-            viewModelAssembly = a;
-        }
-
-        public static void SetInterfaceAssembly(Assembly a)
-        {
-            interfaceAssembly = a;
-        }
-
-        public static void RegisterClassesFromFolder()
-        {
-            var viewmodels = GetTypesInNamespace(viewModelAssembly, "ReferenceApplication.ViewModel");
-            var interfaces = GetTypesInNamespace(interfaceAssembly, "UI.Interfaces");
+            var viewmodels = GetTypesInNamespace(viewModelAssembly, viewModelNamespace);
+            var interfaces = GetTypesInNamespace(interfaceAssembly, interfaceNamespace);
 
             foreach (var item in viewmodels)
             {
@@ -60,6 +50,49 @@ namespace UI
                 return null;
             }
         }
+
+        #region AttachedDependencyProperty 'Interface'
+        /// <summary>
+        /// sets or gets the Dragable
+        /// </summary>
+        public static void SetInterface(UIElement element, Type value)
+        {
+            element.SetValue(InterfaceProperty, value);
+        }
+        public static Type GetInterface(UIElement element)
+        {
+            return (Type)element.GetValue(InterfaceProperty);
+        }
+
+        /// <summary>
+        /// DependencyProperty Interface
+        /// </summary>
+        public static readonly DependencyProperty InterfaceProperty = DependencyProperty.RegisterAttached(
+            "Interface",
+            typeof(Type),
+            typeof(ViewModelFactory),
+            new PropertyMetadata(null, InterfacePropertyChangedCallback)
+        );
+        private static void InterfacePropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue is Type)
+            {
+                FrameworkElement el = sender as FrameworkElement;
+                if (el != null)
+                {
+                    el.DataContext = ViewModelFactory.CreateViewModel(e.NewValue as Type);
+                }
+            }
+            else
+            {
+                FrameworkElement el = sender as FrameworkElement;
+                if (el != null)
+                {
+                    el.DataContext = null;
+                }
+            }
+        }
+        #endregion
 
     }
 

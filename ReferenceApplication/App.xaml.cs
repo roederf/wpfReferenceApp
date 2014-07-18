@@ -30,47 +30,29 @@ namespace ReferenceApplication
         {
             base.OnStartup(e);
 
-            //var am = new ApplicationModel();
-            var am = new ApplicationMockup();
-            am.PropertyChanged += AppModel_PropertyChanged;
+            var am = new ApplicationModel();
+            //var am = new ApplicationMockup();
             ApplicationModel = am;
 
-            ViewModelFactory.SetViewmodelAssembly(Assembly.GetExecutingAssembly());
-            ViewModelFactory.SetInterfaceAssembly(Assembly.Load(new AssemblyName("UI")));
-            
-            ViewModelFactory.RegisterClassesFromFolder();
+            ViewModelFactory.RegisterInterfacesAndImplementations(Assembly.GetExecutingAssembly(), "ReferenceApplication.ViewModel", Assembly.Load(new AssemblyName("UI")), "UI.Interfaces");
+
+            BackgroundCommand.BusyCountChanged += BackgroundCommand_BusyCountChanged;
 
             MainWindow mw = new MainWindow();
             mw.DataContext = this;
             
             Name = "Reference App";
-
-            ApplicationModel.Init();
+            
+            Shell = new LoginViewModel();
 
             mw.Show();
         }
 
-        void AppModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        void BackgroundCommand_BusyCountChanged(object sender, EventArgs e)
         {
-            if (e.PropertyName == "State")
-            {
-                switch (ApplicationModel.State)
-                {
-                    case ApplicationState.Login:
-                        Shell = new LoginViewModel();
-                        break;
-                    case ApplicationState.Home:
-                        Shell = new HomeViewModel();
-                        break;
-                    case ApplicationState.Edit:
-                        Shell = new EditViewModel();
-                        break;
-                    default:
-                        break;
-                }
-            }
+            IsBusy = BackgroundCommand.BusyCount > 0;
         }
-        
+
         public static App CurrentApp { get { return (App)Application.Current; } }
 
         public IEventAggregator EventAggregator
@@ -105,7 +87,7 @@ namespace ReferenceApplication
         public object Shell
         {
             get { return _Shell; }
-            private set
+            set
             {
                 if (_Shell != value)
                 {
@@ -119,6 +101,25 @@ namespace ReferenceApplication
         }
         #endregion
 
+        #region Property bool 'IsBusy'
+        private bool _IsBusy = false;
+        public bool IsBusy
+        {
+            get { return _IsBusy; }
+            set
+            {
+                if (_IsBusy != value)
+                {
+                    _IsBusy = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("IsBusy"));
+                    }
+                }
+            }
+        }
+        #endregion
+        
         public IApplicationModel ApplicationModel { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
