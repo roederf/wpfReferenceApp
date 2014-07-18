@@ -2,11 +2,22 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:UIControls">
     
+    <Storyboard x:Key="blendStoryboard">
+        <DoubleAnimation From="0" To="1" Duration="0:0:0.5" Storyboard.TargetProperty="Opacity">
+            <DoubleAnimation.EasingFunction>
+                <PowerEase EasingMode="EaseInOut"/>
+            </DoubleAnimation.EasingFunction>
+        </DoubleAnimation>
+    </Storyboard>
+    
     <Style TargetType="{x:Type local:TransitionControl}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TransitionControl}">
-                    <ContentPresenter Content="{TemplateBinding Content}" Name="PART_Content"/>
+                    <Grid>
+                        <Image Source="{TemplateBinding OldContentImage}" />
+                        <ContentPresenter Content="{TemplateBinding Content}" Name="PART_Content"/>    
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

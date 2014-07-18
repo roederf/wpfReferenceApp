@@ -9,19 +9,18 @@
         Title="{Binding Name}" Height="350" Width="525">
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:LoginViewModel}">
-            <v:LoginView />
+            <v:LoginView c:TransitionControl.Transition="Blend"/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:HomeViewModel}">
-            <v:HomeView />
+            <v:HomeView c:TransitionControl.Transition="Blend"/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:EditViewModel}">
-            <v:EditView />
+            <v:EditView c:TransitionControl.Transition="Blend"/>
         </DataTemplate>
     </Window.Resources>
     <Grid>
-        <c:TransitionControl Content="{Binding Shell}">
-            
-        </c:TransitionControl>
+        <c:TransitionControl Content="{Binding Shell}"/>
+        
         <Border Background="#88000000">
             <Border.Style>
                 <Style TargetType="{x:Type Border}">

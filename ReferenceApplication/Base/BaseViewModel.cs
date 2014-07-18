@@ -162,6 +162,22 @@ namespace ReferenceApplication.Base
         }
     }
 
+    public class PushViewModelStartedEvent : CompositePresentationEvent<BaseViewModel>
+    {
+    }
+
+    public class PushViewModelFinishedEvent : CompositePresentationEvent<BaseViewModel>
+    {
+    }
+
+    public class PopViewModelStartedEvent : CompositePresentationEvent<BaseViewModel>
+    {
+    }
+
+    public class PopViewModelFinishedEvent : CompositePresentationEvent<BaseViewModel>
+    {
+    }
+
     public enum TransitionType
     {
         Slide,
