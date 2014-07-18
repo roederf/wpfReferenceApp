@@ -5,21 +5,25 @@
         xmlns:v="clr-namespace:UI.View;assembly=UI"
         xmlns:vm="clr-namespace:ReferenceApplication.ViewModel"
         xmlns:c="clr-namespace:UIControls;assembly=UIControls"
-        
         Title="{Binding Name}" Height="350" Width="525">
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:LoginViewModel}">
-            <v:LoginView c:TransitionControl.Transition="Blend"/>
+            <v:LoginView c:TransitionControl.EnableTransitions="true"/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:HomeViewModel}">
-            <v:HomeView c:TransitionControl.Transition="Blend"/>
+            <v:HomeView c:TransitionControl.EnableTransitions="true"/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:EditViewModel}">
-            <v:EditView c:TransitionControl.Transition="Blend"/>
+            <v:EditView c:TransitionControl.EnableTransitions="true"/>
         </DataTemplate>
     </Window.Resources>
     <Grid>
-        <c:TransitionControl Content="{Binding Shell}"/>
+        <c:TransitionControl Content="{Binding Shell}">
+            <c:TransitionControl.Transitions>
+                <c:Transition From="{x:Type vm:LoginViewModel}" To="{x:Type vm:HomeViewModel}" Type="SlideInFromLeft"/>
+                <c:Transition From="{x:Type vm:HomeViewModel}" To="{x:Type vm:EditViewModel}" Type="Blend"/>
+            </c:TransitionControl.Transitions>
+        </c:TransitionControl>
         
         <Border Background="#88000000">
             <Border.Style>
