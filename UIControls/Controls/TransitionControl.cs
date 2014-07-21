@@ -14,7 +14,7 @@ namespace UIControls
 {
     public class TransitionControl : ContentControl
     {
-        private TransitionType nextTransition = TransitionType.None;
+        private Transition nextTransition = null;
         private bool isBackward = false;
         FrameworkElement _oldContent, _content;
 
@@ -37,70 +37,10 @@ namespace UIControls
         void OnTransitionContainerLoaded(object sender, TransitionContainerLoadedEventArgs e)
         {
             FrameworkElement element = e.OriginalSource as FrameworkElement;
-            if (nextTransition == TransitionType.Blend)
+
+            if (nextTransition != null)
             {
-                var fadeInStory = new Storyboard() { FillBehavior = System.Windows.Media.Animation.FillBehavior.Stop };
-                DoubleAnimation fadeIn = new DoubleAnimation();
-                fadeIn.From = 0;
-                fadeIn.To = 1;
-                fadeIn.EasingFunction = new PowerEase() { EasingMode = EasingMode.EaseInOut };
-                fadeIn.Duration = new Duration(TimeSpan.FromMilliseconds(500));
-                fadeInStory.Children.Add(fadeIn);
-                Storyboard.SetTargetProperty(fadeIn, new PropertyPath("Opacity"));
-
-                var fadeOutStory = new Storyboard() { FillBehavior = System.Windows.Media.Animation.FillBehavior.Stop };
-                DoubleAnimation fadeOut = new DoubleAnimation();
-                fadeOut.From = 1;
-                fadeOut.To = 0;
-                fadeOut.EasingFunction = new PowerEase() { EasingMode = EasingMode.EaseInOut };
-                fadeOut.Duration = new Duration(TimeSpan.FromMilliseconds(500));
-                fadeOutStory.Children.Add(fadeOut);
-                Storyboard.SetTargetProperty(fadeOut, new PropertyPath("Opacity"));
-
-                fadeInStory.Begin(_content, false);
-                fadeOutStory.Begin(_oldContent, false);
-                
-
-            }
-            else if (nextTransition == TransitionType.SlideInFromLeft)
-            {
-                var slideInStory = new Storyboard() { FillBehavior = System.Windows.Media.Animation.FillBehavior.Stop };
-                DoubleAnimation da = new DoubleAnimation();
-                da.From = Application.Current.MainWindow.ActualWidth;
-                da.To = 0;
-                da.Duration = new Duration(TimeSpan.FromMilliseconds(500));
-                Storyboard.SetTargetProperty(da, new PropertyPath("(FrameworkElement.RenderTransform).(TranslateTransform.X)"));
-                da.EasingFunction = new PowerEase() { EasingMode = System.Windows.Media.Animation.EasingMode.EaseInOut };
-                slideInStory.Children.Add(da);
-
-                _content.RenderTransform = new TranslateTransform();
-
-                var slideOutStory = new Storyboard() { FillBehavior = System.Windows.Media.Animation.FillBehavior.Stop };
-                da = new DoubleAnimation();
-                da.From = 0;
-                da.To = Application.Current.MainWindow.ActualWidth;
-                da.Duration = new Duration(TimeSpan.FromMilliseconds(500));
-                Storyboard.SetTargetProperty(da, new PropertyPath("(FrameworkElement.RenderTransform).(TranslateTransform.X)"));
-                da.EasingFunction = new PowerEase() { EasingMode = System.Windows.Media.Animation.EasingMode.EaseInOut };
-                slideOutStory.Children.Add(da);
-
-                _oldContent.RenderTransform = new TranslateTransform();
-
-                if (isBackward)
-                {
-                    Panel.SetZIndex(_oldContent, 1);
-                    slideOutStory.Completed += (s, args) =>
-                        {
-                            Panel.SetZIndex(_oldContent, 0);
-                        };
-                    slideOutStory.Begin(_oldContent, false);
-
-                }
-                else
-                {
-                    slideInStory.Begin(_content, false);
-                }
-                //slideOutStory.Begin(_oldContent, false);
+                nextTransition.BeginStoryboard(_content, _oldContent, isBackward);
             }
 
             e.Handled = true;
@@ -134,23 +74,18 @@ namespace UIControls
             // render current view into bitmap
             OldContentImage = renderCurrentVisual();
 
-            nextTransition = TransitionType.None;
+            nextTransition = null;
             isBackward = false;
 
             if (oldContent != null && newContent != null)
             {
                 
-                var forward = Transitions.FirstOrDefault(t => t.From == oldContent.GetType() && t.To == newContent.GetType());
-                if (forward != null)
+                nextTransition = Transitions.FirstOrDefault(t => t.From == oldContent.GetType() && t.To == newContent.GetType());
+                if (nextTransition == null)
                 {
-                    nextTransition = forward.Type;
-                }
-                else
-                {
-                    var backward = Transitions.FirstOrDefault(t => t.To == oldContent.GetType() && t.From == newContent.GetType());
-                    if (backward != null)
+                    nextTransition = Transitions.FirstOrDefault(t => t.To == oldContent.GetType() && t.From == newContent.GetType());
+                    if (nextTransition != null)
                     {
-                        nextTransition = backward.Type;
                         isBackward = true;
                     }
                 }
@@ -275,17 +210,11 @@ namespace UIControls
         );
         #endregion
         
-
-        public enum TransitionType
-        {
-            None,
-            Blend,
-            SlideInFromLeft
-        }
     }
 
-    public class Transition : Control
+    public abstract class Transition : DependencyObject
     {
+        abstract public void BeginStoryboard(FrameworkElement foreground, FrameworkElement background, bool isBackward);
 
         #region DependencyProperty 'From'
         /// <summary>
@@ -326,26 +255,75 @@ namespace UIControls
             new PropertyMetadata(null)
         );
         #endregion
+    }
 
-        #region DependencyProperty 'Type'
-        /// <summary>
-        /// sets or gets the Type
-        /// </summary>
-        public TransitionControl.TransitionType Type
+    public class BlendTransition : Transition
+    {
+        public override void BeginStoryboard(FrameworkElement foreground, FrameworkElement background, bool isBackward)
         {
-        get { return (TransitionControl.TransitionType)this.GetValue(TypeProperty); }
-        set { this.SetValue(TypeProperty, value); }
+            var fadeInStory = new Storyboard() { FillBehavior = System.Windows.Media.Animation.FillBehavior.Stop };
+            DoubleAnimation fadeIn = new DoubleAnimation();
+            fadeIn.From = 0;
+            fadeIn.To = 1;
+            fadeIn.EasingFunction = new PowerEase() { EasingMode = EasingMode.EaseInOut };
+            fadeIn.Duration = new Duration(TimeSpan.FromMilliseconds(500));
+            fadeInStory.Children.Add(fadeIn);
+            Storyboard.SetTargetProperty(fadeIn, new PropertyPath("Opacity"));
+
+            var fadeOutStory = new Storyboard() { FillBehavior = System.Windows.Media.Animation.FillBehavior.Stop };
+            DoubleAnimation fadeOut = new DoubleAnimation();
+            fadeOut.From = 1;
+            fadeOut.To = 0;
+            fadeOut.EasingFunction = new PowerEase() { EasingMode = EasingMode.EaseInOut };
+            fadeOut.Duration = new Duration(TimeSpan.FromMilliseconds(500));
+            fadeOutStory.Children.Add(fadeOut);
+            Storyboard.SetTargetProperty(fadeOut, new PropertyPath("Opacity"));
+
+            fadeInStory.Begin(foreground, false);
+            fadeOutStory.Begin(background, false);
         }
-        /// <summary>
-        /// DependencyProperty Type
-        /// </summary>
-        public static readonly DependencyProperty TypeProperty = DependencyProperty.Register(
-            "Type",
-            typeof(TransitionControl.TransitionType),
-            typeof(Transition),
-            new PropertyMetadata(TransitionControl.TransitionType.None)
-        );
-        #endregion
-        
+    }
+
+    public class SlideInTransition : Transition
+    {
+        public override void BeginStoryboard(FrameworkElement foreground, FrameworkElement background, bool isBackward)
+        {
+            var slideInStory = new Storyboard() { FillBehavior = System.Windows.Media.Animation.FillBehavior.Stop };
+            DoubleAnimation da = new DoubleAnimation();
+            da.From = Application.Current.MainWindow.ActualWidth;
+            da.To = 0;
+            da.Duration = new Duration(TimeSpan.FromMilliseconds(500));
+            Storyboard.SetTargetProperty(da, new PropertyPath("(FrameworkElement.RenderTransform).(TranslateTransform.X)"));
+            da.EasingFunction = new PowerEase() { EasingMode = System.Windows.Media.Animation.EasingMode.EaseInOut };
+            slideInStory.Children.Add(da);
+
+            foreground.RenderTransform = new TranslateTransform();
+
+            var slideOutStory = new Storyboard() { FillBehavior = System.Windows.Media.Animation.FillBehavior.Stop };
+            da = new DoubleAnimation();
+            da.From = 0;
+            da.To = Application.Current.MainWindow.ActualWidth;
+            da.Duration = new Duration(TimeSpan.FromMilliseconds(500));
+            Storyboard.SetTargetProperty(da, new PropertyPath("(FrameworkElement.RenderTransform).(TranslateTransform.X)"));
+            da.EasingFunction = new PowerEase() { EasingMode = System.Windows.Media.Animation.EasingMode.EaseInOut };
+            slideOutStory.Children.Add(da);
+
+            background.RenderTransform = new TranslateTransform();
+
+            if (isBackward)
+            {
+                Panel.SetZIndex(background, 1);
+                slideOutStory.Completed += (s, args) =>
+                {
+                    Panel.SetZIndex(background, 0);
+                };
+                slideOutStory.Begin(background, false);
+
+            }
+            else
+            {
+                slideInStory.Begin(foreground, false);
+            }
+        }
     }
 }

@@ -20,8 +20,8 @@
     <Grid>
         <c:TransitionControl Content="{Binding Shell}">
             <c:TransitionControl.Transitions>
-                <c:Transition From="{x:Type vm:LoginViewModel}" To="{x:Type vm:HomeViewModel}" Type="SlideInFromLeft"/>
-                <c:Transition From="{x:Type vm:HomeViewModel}" To="{x:Type vm:EditViewModel}" Type="Blend"/>
+                <c:SlideInTransition From="{x:Type vm:LoginViewModel}" To="{x:Type vm:HomeViewModel}" />
+                <c:BlendTransition From="{x:Type vm:HomeViewModel}" To="{x:Type vm:EditViewModel}" />
             </c:TransitionControl.Transitions>
         </c:TransitionControl>
         
