@@ -130,7 +130,9 @@
     <Compile Include="Controls\AccordeonItem.cs" />
     <Compile Include="Controls\AdornerPopup.cs" />
     <Compile Include="Controls\AnalogAxisControl.cs" />
+    <Compile Include="Controls\BlendTransition.cs" />
     <Compile Include="Controls\ColorPicker.cs" />
+    <Compile Include="Controls\SlideInTransition.cs" />
     <Compile Include="Controls\TransitionControl.cs" />
     <Compile Include="Utilities\ColorUtilities.cs" />
     <Compile Include="Helper\DoubleTapHelper.cs" />

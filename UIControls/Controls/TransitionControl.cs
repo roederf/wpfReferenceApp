@@ -40,7 +40,14 @@ namespace UIControls
 
             if (nextTransition != null)
             {
-                nextTransition.BeginStoryboard(_content, _oldContent, isBackward);
+                if (isBackward)
+                {
+                    nextTransition.BackwardAnimation(_content, _oldContent);
+                }
+                else
+                {
+                    nextTransition.ForwardAnimation(_content, _oldContent);
+                }
             }
 
             e.Handled = true;
@@ -214,7 +221,9 @@ namespace UIControls
 
     public abstract class Transition : DependencyObject
     {
-        abstract public void BeginStoryboard(FrameworkElement foreground, FrameworkElement background, bool isBackward);
+        abstract public void ForwardAnimation(FrameworkElement foreground, FrameworkElement background);
+
+        abstract public void BackwardAnimation(FrameworkElement foreground, FrameworkElement background);
 
         #region DependencyProperty 'From'
         /// <summary>
@@ -257,73 +266,7 @@ namespace UIControls
         #endregion
     }
 
-    public class BlendTransition : Transition
-    {
-        public override void BeginStoryboard(FrameworkElement foreground, FrameworkElement background, bool isBackward)
-        {
-            var fadeInStory = new Storyboard() { FillBehavior = System.Windows.Media.Animation.FillBehavior.Stop };
-            DoubleAnimation fadeIn = new DoubleAnimation();
-            fadeIn.From = 0;
-            fadeIn.To = 1;
-            fadeIn.EasingFunction = new PowerEase() { EasingMode = EasingMode.EaseInOut };
-            fadeIn.Duration = new Duration(TimeSpan.FromMilliseconds(500));
-            fadeInStory.Children.Add(fadeIn);
-            Storyboard.SetTargetProperty(fadeIn, new PropertyPath("Opacity"));
 
-            var fadeOutStory = new Storyboard() { FillBehavior = System.Windows.Media.Animation.FillBehavior.Stop };
-            DoubleAnimation fadeOut = new DoubleAnimation();
-            fadeOut.From = 1;
-            fadeOut.To = 0;
-            fadeOut.EasingFunction = new PowerEase() { EasingMode = EasingMode.EaseInOut };
-            fadeOut.Duration = new Duration(TimeSpan.FromMilliseconds(500));
-            fadeOutStory.Children.Add(fadeOut);
-            Storyboard.SetTargetProperty(fadeOut, new PropertyPath("Opacity"));
 
-            fadeInStory.Begin(foreground, false);
-            fadeOutStory.Begin(background, false);
-        }
-    }
 
-    public class SlideInTransition : Transition
-    {
-        public override void BeginStoryboard(FrameworkElement foreground, FrameworkElement background, bool isBackward)
-        {
-            var slideInStory = new Storyboard() { FillBehavior = System.Windows.Media.Animation.FillBehavior.Stop };
-            DoubleAnimation da = new DoubleAnimation();
-            da.From = Application.Current.MainWindow.ActualWidth;
-            da.To = 0;
-            da.Duration = new Duration(TimeSpan.FromMilliseconds(500));
-            Storyboard.SetTargetProperty(da, new PropertyPath("(FrameworkElement.RenderTransform).(TranslateTransform.X)"));
-            da.EasingFunction = new PowerEase() { EasingMode = System.Windows.Media.Animation.EasingMode.EaseInOut };
-            slideInStory.Children.Add(da);
-
-            foreground.RenderTransform = new TranslateTransform();
-
-            var slideOutStory = new Storyboard() { FillBehavior = System.Windows.Media.Animation.FillBehavior.Stop };
-            da = new DoubleAnimation();
-            da.From = 0;
-            da.To = Application.Current.MainWindow.ActualWidth;
-            da.Duration = new Duration(TimeSpan.FromMilliseconds(500));
-            Storyboard.SetTargetProperty(da, new PropertyPath("(FrameworkElement.RenderTransform).(TranslateTransform.X)"));
-            da.EasingFunction = new PowerEase() { EasingMode = System.Windows.Media.Animation.EasingMode.EaseInOut };
-            slideOutStory.Children.Add(da);
-
-            background.RenderTransform = new TranslateTransform();
-
-            if (isBackward)
-            {
-                Panel.SetZIndex(background, 1);
-                slideOutStory.Completed += (s, args) =>
-                {
-                    Panel.SetZIndex(background, 0);
-                };
-                slideOutStory.Begin(background, false);
-
-            }
-            else
-            {
-                slideInStory.Begin(foreground, false);
-            }
-        }
-    }
 }
