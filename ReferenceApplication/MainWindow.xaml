@@ -7,6 +7,7 @@
         xmlns:c="clr-namespace:UIControls;assembly=UIControls"
         Title="{Binding Name}" Height="350" Width="525">
     <Window.Resources>
+        <!-- Todo: add all viewmodel datatemplates that act as a shell -->
         <DataTemplate DataType="{x:Type vm:LoginViewModel}">
             <v:LoginView c:TransitionControl.EnableTransitions="true"/>
         </DataTemplate>
@@ -29,9 +30,51 @@
             <Border.Style>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="Visibility" Value="Collapsed"/>
+                    <Setter Property="Opacity" Value="0"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsBusy}" Value="true">
-                            <Setter Property="Visibility" Value="Visible"/>
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Duration="0:0:0.5" To="1" BeginTime="0:0:0.0"
+                                                         Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation.EasingFunction>
+                                                <PowerEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.2" To="0" BeginTime="0:0:0.0"
+                                                         Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation.EasingFunction>
+                                                <PowerEase EasingMode="EaseInOut"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Collapsed</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>

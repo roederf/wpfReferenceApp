@@ -28,24 +28,8 @@ namespace ReferenceApplication.ViewModel
         {
             _appModel = App.CurrentApp.ApplicationModel;
             Model = _appModel.CurrentFile;
-            //_appModel.PropertyChanged += _appModel_PropertyChanged;
         }
-
-        //void _appModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        //{
-        //    if (e.PropertyName == "State")
-        //    {
-        //        if (_appModel.State == ApplicationState.Edit_Progress)
-        //        {
-        //            BusyState = ViewModel.BusyState.Inactive;
-        //        }
-        //        else
-        //        {
-        //            BusyState = ViewModel.BusyState.Active;
-        //        }
-        //    }
-        //}
-        
+                
         protected override void initializeFromModel()
         {
             base.initializeFromModel();
@@ -89,24 +73,5 @@ namespace ReferenceApplication.ViewModel
         }
         #endregion
 
-
-        
-                
-
-        #region Property BusyState 'BusyState'
-        private BusyState _BusyState = BusyState.Active;
-        public BusyState BusyState
-        {
-            get { return _BusyState; }
-            set
-            {
-                if (_BusyState != value)
-                {
-                    _BusyState = value;
-                    OnPropertyChanged("BusyState");
-                }
-            }
-        }
-        #endregion
     }
 }

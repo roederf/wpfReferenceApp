@@ -37,15 +37,21 @@ namespace ReferenceApplication
             ViewModelFactory.RegisterInterfacesAndImplementations(Assembly.GetExecutingAssembly(), "ReferenceApplication.ViewModel", Assembly.Load(new AssemblyName("UI")), "UI.Interfaces");
 
             BackgroundCommand.BusyCountChanged += BackgroundCommand_BusyCountChanged;
+            BaseViewModel.CurrentShellChanged += BaseViewModel_CurrentShellChanged;
 
             MainWindow mw = new MainWindow();
             mw.DataContext = this;
             
             Name = "Reference App";
-            
-            Shell = new LoginViewModel();
+
+            BaseViewModel.SetStartupShell(new LoginViewModel());
 
             mw.Show();
+        }
+
+        void BaseViewModel_CurrentShellChanged(object sender, EventArgs e)
+        {
+            Shell = BaseViewModel.CurrentShell;
         }
 
         void BackgroundCommand_BusyCountChanged(object sender, EventArgs e)

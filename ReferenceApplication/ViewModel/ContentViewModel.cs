@@ -94,23 +94,7 @@ namespace ReferenceApplication.ViewModel
             }
         }
         #endregion
-                        
-        #region Property BusyState 'BusyState'
-        private BusyState _BusyState = BusyState.Active;
-        public BusyState BusyState
-        {
-            get { return _BusyState; }
-            set
-            {
-                if (_BusyState != value)
-                {
-                    _BusyState = value;
-                    OnPropertyChanged("BusyState");
-                }
-            }
-        }
-        #endregion
-
+                       
         #region Command 'DoSomethingInBackgroundCommand', Parameter: object
         private ICommand _DoSomethingInBackgroundCommand;
         public ICommand DoSomethingInBackgroundCommand

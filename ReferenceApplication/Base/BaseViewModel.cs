@@ -14,6 +14,28 @@ namespace ReferenceApplication.Base
         private bool updatingModel = false;
 
         private static Stack<BaseViewModel> _viewModels = new Stack<BaseViewModel>();
+
+        private static BaseViewModel currentShell;
+        public static BaseViewModel CurrentShell 
+        {
+            get
+            {
+                return currentShell;
+            }
+            private set
+            {
+                if (currentShell != value)
+                {
+                    currentShell = value;
+                    if (CurrentShellChanged != null)
+                    {
+                        CurrentShellChanged(null, new EventArgs());
+                    }
+                }
+            }
+        }
+
+        public static event EventHandler CurrentShellChanged;
         
         protected BaseViewModel()
         {
@@ -70,28 +92,19 @@ namespace ReferenceApplication.Base
         }
         #endregion
 
-        #region Property TransitionType 'Transition'
-        private TransitionType _Transition = TransitionType.Blend;
-        public TransitionType Transition
+        public static void SetStartupShell(BaseViewModel viewModel)
         {
-            get { return _Transition; }
-            set
-            {
-                if (_Transition != value)
-                {
-                    _Transition = value;
-                    OnPropertyChanged("Transition");
-                }
-            }
+            CurrentShell = viewModel;
         }
-        #endregion
-        
 
         protected void PushViewModel(BaseViewModel viewModel)
         {
-            _viewModels.Push(App.CurrentApp.Shell as BaseViewModel);
+            if (CurrentShell != null)
+            {
+                _viewModels.Push(CurrentShell);
+            }
 
-            App.CurrentApp.Shell = viewModel;
+            CurrentShell = viewModel;
         }
 
         protected void PopViewModel()
@@ -100,7 +113,7 @@ namespace ReferenceApplication.Base
             {
                 var vm = _viewModels.Pop();
 
-                App.CurrentApp.Shell = vm;
+                CurrentShell = vm;
             }
         }
 
@@ -162,25 +175,4 @@ namespace ReferenceApplication.Base
         }
     }
 
-    public class PushViewModelStartedEvent : CompositePresentationEvent<BaseViewModel>
-    {
-    }
-
-    public class PushViewModelFinishedEvent : CompositePresentationEvent<BaseViewModel>
-    {
-    }
-
-    public class PopViewModelStartedEvent : CompositePresentationEvent<BaseViewModel>
-    {
-    }
-
-    public class PopViewModelFinishedEvent : CompositePresentationEvent<BaseViewModel>
-    {
-    }
-
-    public enum TransitionType
-    {
-        Slide,
-        Blend
-    }
 }
