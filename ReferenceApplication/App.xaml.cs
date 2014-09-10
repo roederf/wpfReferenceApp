@@ -1,9 +1,7 @@
 ﻿using BusinessLogic;
 using BusinessLogicInterface;
-using BusinessLogicMockup;
 using Microsoft.Practices.Prism.Events;
 using ReferenceApplication.Base;
-using ReferenceApplication.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +13,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using UI;
-using UI.Interfaces;
 
 namespace ReferenceApplication
 {
@@ -24,7 +21,7 @@ namespace ReferenceApplication
     /// </summary>
     public partial class App : Application, INotifyPropertyChanged
     {
-        IEventAggregator eventAggregator = new EventAggregator();
+        
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -34,7 +31,8 @@ namespace ReferenceApplication
             //var am = new ApplicationMockup();
             ApplicationModel = am;
 
-            ViewModelFactory.RegisterInterfacesAndImplementations(Assembly.GetExecutingAssembly(), "ReferenceApplication.ViewModel", Assembly.Load(new AssemblyName("UI")), "UI.Interfaces");
+            //ViewModelFactory.RegisterInterfacesAndImplementations(Assembly.GetExecutingAssembly(), "ReferenceApplication.ViewModel", Assembly.Load(new AssemblyName("UI")), "UI.Interfaces");
+            ViewModelFactory.RegisterViewModelParameter(ApplicationModel);
 
             BackgroundCommand.BusyCountChanged += BackgroundCommand_BusyCountChanged;
             BaseViewModel.CurrentShellChanged += BaseViewModel_CurrentShellChanged;
@@ -44,7 +42,7 @@ namespace ReferenceApplication
             
             Name = "Reference App";
 
-            BaseViewModel.SetStartupShell(new LoginViewModel());
+            BaseViewModel.SetStartupShell(new LoginViewModel(am));
 
             mw.Show();
         }
@@ -61,13 +59,7 @@ namespace ReferenceApplication
 
         public static App CurrentApp { get { return (App)Application.Current; } }
 
-        public IEventAggregator EventAggregator
-        {
-            get
-            {
-                return eventAggregator;
-            }
-        }
+        
 
         #region Property string 'Name'
         private string _Name = null;

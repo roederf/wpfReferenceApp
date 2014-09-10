@@ -1,4 +1,4 @@
-﻿using BusinessLogic;
+﻿
 using BusinessLogicInterface;
 using Microsoft.Practices.Prism.Events;
 using ReferenceApplication.Base;
@@ -10,16 +10,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace ReferenceApplication.ViewModel
+namespace UI
 {
     public class EditViewModel : BaseViewModel
     {
         IApplicationModel _appModel;
 
-        public EditViewModel()
+        public EditViewModel(IApplicationModel appModel)
             :base()
         {
-            _appModel = App.CurrentApp.ApplicationModel;
+            _appModel = appModel;
             
             Name = _appModel.CurrentFile.Name;
         }

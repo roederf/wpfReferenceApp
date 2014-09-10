@@ -11,11 +11,16 @@ namespace UI
     public class ViewModelFactory : DependencyObject
     {
         static Dictionary<Type, Type> _dict = new Dictionary<Type, Type>();
-        
+        static private object _parameter;
 
         private static Type[] GetTypesInNamespace(Assembly assembly, string nameSpace)
         {
             return assembly.GetTypes().Where(t => String.Equals(t.Namespace, nameSpace, StringComparison.Ordinal)).ToArray();
+        }
+
+        public static void RegisterViewModelParameter(object parameter)
+        {
+            _parameter = parameter;
         }
 
         public static void RegisterInterfacesAndImplementations(Assembly viewModelAssembly, string viewModelNamespace, Assembly interfaceAssembly, string interfaceNamespace)
@@ -39,16 +44,17 @@ namespace UI
             _dict[viewmodelInterface] = viewmodelImpl;
         }
 
-        public static object CreateViewModel(Type t)
+        public static object CreateViewModel(Type t, object param)
         {
-            if (_dict.ContainsKey(t))
-            {
-                return Activator.CreateInstance(_dict[t]);
-            }
-            else
-            {
-                return null;
-            }
+            //if (_dict.ContainsKey(t))
+            //{
+            //    return Activator.CreateInstance(_dict[t], param);
+            //}
+            //else
+            //{
+            //    return null;
+            //}
+            return Activator.CreateInstance(t, param);
         }
 
         #region AttachedDependencyProperty 'Interface'
@@ -80,7 +86,7 @@ namespace UI
                 FrameworkElement el = sender as FrameworkElement;
                 if (el != null)
                 {
-                    el.DataContext = ViewModelFactory.CreateViewModel(e.NewValue as Type);
+                    el.DataContext = ViewModelFactory.CreateViewModel(e.NewValue as Type, _parameter);
                 }
             }
             else

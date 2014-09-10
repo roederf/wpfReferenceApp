@@ -1,4 +1,4 @@
-﻿using BusinessLogic;
+﻿
 using BusinessLogicInterface;
 using Microsoft.Practices.Prism.Events;
 using ReferenceApplication.Base;
@@ -10,16 +10,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace ReferenceApplication.ViewModel
+namespace UI
 {
     public class HomeViewModel : BaseViewModel
     {
         IApplicationModel _appModel;
 
-        public HomeViewModel()
+        public HomeViewModel(IApplicationModel appModel)
             :base()
         {
-            _appModel = App.CurrentApp.ApplicationModel;
+            _appModel = appModel;
         }
 
         #region Command 'LogoutCommand', Parameter: object
@@ -75,7 +75,7 @@ namespace ReferenceApplication.ViewModel
         {
             if ((bool)param.Result)
             {
-                this.PushViewModel(new EditViewModel());
+                this.PushViewModel(new EditViewModel(_appModel));
             }
         }
         #endregion

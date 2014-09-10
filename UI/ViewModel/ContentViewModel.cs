@@ -1,8 +1,6 @@
-﻿using BusinessLogic;
-using BusinessLogicInterface;
+﻿using BusinessLogicInterface;
 using Microsoft.Practices.Prism.Events;
 using ModelInterfaces;
-using ModelLib;
 using ReferenceApplication.Base;
 using System;
 using System.Collections.Generic;
@@ -11,19 +9,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using UI.Interfaces;
 
-namespace ReferenceApplication.ViewModel
+namespace UI
 {
-    public class ContentViewModel : BaseViewModel, IContentViewModel
+    public class ContentViewModel : BaseViewModel
     {
         IApplicationModel _appModel;
         IPropertyItem _selectedItem = null;
 
-        public ContentViewModel()
+        public ContentViewModel(IApplicationModel appModel)
             :base()
         {
-            _appModel = App.CurrentApp.ApplicationModel;
+            _appModel = appModel;
             Model = _appModel.CurrentFile;
 
             EventAggregator.GetEvent<PropertySelectionChangedEvent>().Subscribe(OnPropertySelectionChanged);

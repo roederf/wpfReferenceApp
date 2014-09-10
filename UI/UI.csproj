@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\external\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -47,9 +50,17 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IEditViewModel.cs" />
-    <Compile Include="Interfaces\IHomeViewModel.cs" />
+    <Compile Include="Base\BackgroundCommand.cs" />
+    <Compile Include="Base\BaseViewModel.cs" />
+    <Compile Include="Base\RelayCommand.cs" />
     <Compile Include="ViewModelFactory.cs" />
+    <Compile Include="ViewModel\BusyState.cs" />
+    <Compile Include="ViewModel\ContentViewModel.cs" />
+    <Compile Include="ViewModel\EditViewModel.cs" />
+    <Compile Include="ViewModel\HomeViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\PropertySelectionChangedEvent.cs" />
+    <Compile Include="ViewModel\PropertyViewModel.cs" />
     <Compile Include="View\ContentView.xaml.cs">
       <DependentUpon>ContentView.xaml</DependentUpon>
     </Compile>
@@ -59,9 +70,6 @@
     <Compile Include="View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\IContentViewModel.cs" />
-    <Compile Include="Interfaces\ILoginViewModel.cs" />
-    <Compile Include="Interfaces\IPropertyViewModel.cs" />
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -122,6 +130,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ModelInterfaces\ModelInterfaces.csproj">
+      <Project>{8353b528-ef9f-4b17-bddc-bfae4d086003}</Project>
+      <Name>ModelInterfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UIControls\UIControls.csproj">
       <Project>{3c7c8c24-d1c3-405c-a0c8-9d9a32da9189}</Project>
       <Name>UIControls</Name>

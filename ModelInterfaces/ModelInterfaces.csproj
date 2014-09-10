@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IApplicationModel.cs" />
     <Compile Include="IFileItem.cs" />
     <Compile Include="IPropertyItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

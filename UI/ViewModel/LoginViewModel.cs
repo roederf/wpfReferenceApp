@@ -1,4 +1,4 @@
-﻿using BusinessLogic;
+﻿
 using BusinessLogicInterface;
 using Microsoft.Practices.Prism.Events;
 using ReferenceApplication.Base;
@@ -9,18 +9,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using UI.Interfaces;
 
-namespace ReferenceApplication.ViewModel
+namespace UI
 {
-    public class LoginViewModel : BaseViewModel, ILoginViewModel
+    public class LoginViewModel : BaseViewModel
     {
         private IApplicationModel _appModel;
 
-        public LoginViewModel()
+        public LoginViewModel(IApplicationModel appModel)
             :base()
         {
-            _appModel = App.CurrentApp.ApplicationModel;
+            _appModel = appModel;
             Model = _appModel;
         }
         
@@ -41,14 +40,14 @@ namespace ReferenceApplication.ViewModel
 
         private void OnLoginCommand(DoWorkEventArgs param)
         {
-            param.Result = App.CurrentApp.ApplicationModel.Login();
+            param.Result = _appModel.Login();
         }
 
         private void OnLoginCommandCompleted(RunWorkerCompletedEventArgs param)
         {
             if ((bool)param.Result)
             {
-                this.PushViewModel(new HomeViewModel());
+                this.PushViewModel(new HomeViewModel(_appModel));
             }
         }
         #endregion

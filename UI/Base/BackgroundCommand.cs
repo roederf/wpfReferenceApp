@@ -1,5 +1,4 @@
 ﻿using Microsoft.Practices.Prism.Events;
-using ReferenceApplication.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,7 +30,7 @@ namespace ReferenceApplication.Base
             _worker = new BackgroundWorker();
             _worker.DoWork += _worker_DoWork;
             _worker.RunWorkerCompleted += _worker_RunWorkerCompleted;
-            eventAggregator = App.CurrentApp.EventAggregator;
+            eventAggregator = BaseViewModel.EventAggregator;
         }
         
         void _worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

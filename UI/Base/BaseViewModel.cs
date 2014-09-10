@@ -15,6 +15,8 @@ namespace ReferenceApplication.Base
 
         private static Stack<BaseViewModel> _viewModels = new Stack<BaseViewModel>();
 
+        private static IEventAggregator eventAggregator = new EventAggregator();
+
         private static BaseViewModel currentShell;
         public static BaseViewModel CurrentShell 
         {
@@ -35,28 +37,20 @@ namespace ReferenceApplication.Base
             }
         }
 
+        public static IEventAggregator EventAggregator
+        {
+            get
+            {
+                return eventAggregator;
+            }
+        }
+
         public static event EventHandler CurrentShellChanged;
         
         protected BaseViewModel()
         {
-            EventAggregator = App.CurrentApp.EventAggregator;
         }
-
-        #region Property IEventAggregator 'EventAggregator'
-        private IEventAggregator _EventAggregator = null;
-        protected IEventAggregator EventAggregator
-        {
-            get { return _EventAggregator; }
-            private set
-            {
-                if (_EventAggregator != value)
-                {
-                    _EventAggregator = value;
-                }
-            }
-        }
-        #endregion
-        
+                
         #region Property INotifyPropertyChanged 'Model'
         private INotifyPropertyChanged _Model = null;
         public INotifyPropertyChanged Model

@@ -1,8 +1,7 @@
-﻿using BusinessLogic;
+﻿
 using BusinessLogicInterface;
 using Microsoft.Practices.Prism.Events;
 using ModelInterfaces;
-using ModelLib;
 using ReferenceApplication.Base;
 using System;
 using System.Collections.Generic;
@@ -12,21 +11,21 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
-using UI.Interfaces;
 
-namespace ReferenceApplication.ViewModel
+namespace UI
 {
-    public class PropertyViewModel : BaseViewModel, IPropertyViewModel
+    public class PropertyViewModel : BaseViewModel
     {
         private IApplicationModel _appModel;
         
 
-        public PropertyViewModel()
+        public PropertyViewModel(IApplicationModel appModel)
             :base()
         {
-            _appModel = App.CurrentApp.ApplicationModel;
+            _appModel = appModel;
             Model = _appModel.CurrentFile;
         }
                 

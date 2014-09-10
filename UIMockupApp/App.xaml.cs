@@ -56,7 +56,7 @@ namespace UIMockupApp
         {
             base.OnStartup(e);
 
-            ViewModelFactory.Register(typeof(UI.Interfaces.IPropertyViewModel), typeof(PropertyViewModel));
+            ViewModelFactory.Register(typeof(PropertyViewModel), typeof(PropertyViewModel));
             
             MainWindow mw = new MainWindow();
             mw.DataContext = this;
@@ -102,7 +102,7 @@ namespace UIMockupApp
 
         private void OnShowHomeCommand(object param)
         {
-            Shell = new HomeViewModel();
+            Shell = new HomeViewModel(appM);
         }
         #endregion
 
@@ -123,7 +123,7 @@ namespace UIMockupApp
 
         private void OnShowEditCommand(object param)
         {
-            Shell = new EditViewModel();
+            Shell = new EditViewModel(appModel);
         }
         #endregion
     }
