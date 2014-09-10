@@ -59,6 +59,7 @@
     <Compile Include="ViewModel\EditViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\PropertyItemViewModel.cs" />
     <Compile Include="ViewModel\PropertySelectionChangedEvent.cs" />
     <Compile Include="ViewModel\PropertyViewModel.cs" />
     <Compile Include="View\ContentView.xaml.cs">

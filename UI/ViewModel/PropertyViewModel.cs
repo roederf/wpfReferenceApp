@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using UI.ViewModel;
 
 namespace UI
 {
@@ -40,23 +41,25 @@ namespace UI
                 _Items.Clear();
                 foreach (var item in fileItem.Properties)
                 {
-                    _Items.Add(item.Name);
+                    _Items.Add(new PropertyItemViewModel(item));
                 }
                 Items.Refresh();
             }
         }
 
-        #region Property ObservableCollection<string> 'Items'
-        private ObservableCollection<string> _Items = new ObservableCollection<string>();
+        #region Property ObservableCollection<PropertyItemViewModel> 'Items'
+        private ObservableCollection<PropertyItemViewModel> _Items = new ObservableCollection<PropertyItemViewModel>();
         public ICollectionView Items
         {
             get { return CollectionViewSource.GetDefaultView(_Items); }
         }
         #endregion
 
-        #region Property string 'SelectedItem'
-        private string _SelectedItem = null;
-        public string SelectedItem
+
+
+        #region Property PropertyItemViewModel 'SelectedItem'
+        private PropertyItemViewModel _SelectedItem = null;
+        public PropertyItemViewModel SelectedItem
         {
             get { return _SelectedItem; }
             set

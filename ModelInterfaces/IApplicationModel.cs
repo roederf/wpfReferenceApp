@@ -16,12 +16,12 @@ namespace BusinessLogicInterface
 
         bool OpenFile();
 
+        bool SaveFile();
+
         bool CloseFile();
 
         void CalculateValue(string propertyName);
 
         IFileItem CurrentFile { get; set; }
-
-        bool UnsavedChanges { get; }
     }
 }

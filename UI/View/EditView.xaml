@@ -17,6 +17,8 @@
         </Grid.RowDefinitions>
             
         <TextBlock Text="{Binding Name,StringFormat={}Edit: {0}}" HorizontalAlignment="Center"/>
+
+        <Button Content="Save" Command="{Binding SaveFileCommand}" Grid.Column="1" HorizontalAlignment="Center"/>
         
         <Button Content="Close" Command="{Binding CloseFileCommand}" Grid.Column="1" HorizontalAlignment="Right"/>
 

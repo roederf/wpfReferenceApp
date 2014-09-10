@@ -12,5 +12,9 @@ namespace ModelInterfaces
         string Name { get; set; }
 
         double Value { get; set; }
+
+        bool HasChanged { get; set; }
+
+        void ChangeName(string name);
     }
 }

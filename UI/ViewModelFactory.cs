@@ -8,6 +8,9 @@ using System.Windows;
 
 namespace UI
 {
+    /// <summary>
+    /// Generates DataContext
+    /// </summary>
     public class ViewModelFactory : DependencyObject
     {
         static Dictionary<Type, Type> _dict = new Dictionary<Type, Type>();
@@ -23,22 +26,6 @@ namespace UI
             _parameter = parameter;
         }
 
-        public static void RegisterInterfacesAndImplementations(Assembly viewModelAssembly, string viewModelNamespace, Assembly interfaceAssembly, string interfaceNamespace)
-        {
-            var viewmodels = GetTypesInNamespace(viewModelAssembly, viewModelNamespace);
-            var interfaces = GetTypesInNamespace(interfaceAssembly, interfaceNamespace);
-
-            foreach (var item in viewmodels)
-            {
-                var intf = interfaces.FirstOrDefault(i => i.Name == "I" + item.Name);
-                if (intf != null)
-                {
-                    Register(intf, item);
-                }
-            }
-            
-        }
-
         public static void Register(Type viewmodelInterface, Type viewmodelImpl)
         {
             _dict[viewmodelInterface] = viewmodelImpl;
@@ -46,40 +33,32 @@ namespace UI
 
         public static object CreateViewModel(Type t, object param)
         {
-            //if (_dict.ContainsKey(t))
-            //{
-            //    return Activator.CreateInstance(_dict[t], param);
-            //}
-            //else
-            //{
-            //    return null;
-            //}
             return Activator.CreateInstance(t, param);
         }
 
-        #region AttachedDependencyProperty 'Interface'
+        #region AttachedDependencyProperty 'Instance'
         /// <summary>
         /// sets or gets the Dragable
         /// </summary>
-        public static void SetInterface(UIElement element, Type value)
+        public static void SetInstance(UIElement element, Type value)
         {
-            element.SetValue(InterfaceProperty, value);
+            element.SetValue(InstanceProperty, value);
         }
-        public static Type GetInterface(UIElement element)
+        public static Type GetInstance(UIElement element)
         {
-            return (Type)element.GetValue(InterfaceProperty);
+            return (Type)element.GetValue(InstanceProperty);
         }
 
         /// <summary>
-        /// DependencyProperty Interface
+        /// DependencyProperty Instance
         /// </summary>
-        public static readonly DependencyProperty InterfaceProperty = DependencyProperty.RegisterAttached(
-            "Interface",
+        public static readonly DependencyProperty InstanceProperty = DependencyProperty.RegisterAttached(
+            "Instance",
             typeof(Type),
             typeof(ViewModelFactory),
-            new PropertyMetadata(null, InterfacePropertyChangedCallback)
+            new PropertyMetadata(null, InstancePropertyChangedCallback)
         );
-        private static void InterfacePropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        private static void InstancePropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             if (e.NewValue is Type)
             {
@@ -99,7 +78,6 @@ namespace UI
             }
         }
         #endregion
-
     }
 
 }

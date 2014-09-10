@@ -56,7 +56,36 @@ namespace UI
             }
         }
         #endregion
-        
+
+        #region Command 'SaveFileCommand', Parameter: object
+        private ICommand _SaveFileCommand;
+        public ICommand SaveFileCommand
+        {
+            get
+            {
+                return _SaveFileCommand ?? (_SaveFileCommand = new BackgroundCommand(OnSaveFileCommand, OnSaveFileCompleted, CanSaveFile));
+            }
+        }
+
+        private bool CanSaveFile(object param)
+        {
+            return true;
+        }
+
+        private void OnSaveFileCommand(DoWorkEventArgs param)
+        {
+            param.Result = _appModel.SaveFile();
+        }
+
+        private void OnSaveFileCompleted(RunWorkerCompletedEventArgs param)
+        {
+            if ((bool)param.Result)
+            {
+                this.PopViewModel();
+            }
+        }
+        #endregion
+
         #region Command 'CloseFileCommand', Parameter: object
         private ICommand _CloseFileCommand;
         public ICommand CloseFileCommand

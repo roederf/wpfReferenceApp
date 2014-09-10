@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ModelLib
 {
+    [Serializable]
     public class BaseModel : INotifyPropertyChanged
     {
         #region Property string 'Name'
@@ -37,6 +38,8 @@ namespace ModelLib
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
+
+        [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

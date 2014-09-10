@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using UI.ViewModel;
 
 namespace UI
 {
@@ -33,19 +34,18 @@ namespace UI
             EventAggregator.GetEvent<PropertySelectionChangedEvent>().Unsubscribe(OnPropertySelectionChanged);
         }
         
-        void OnPropertySelectionChanged(string payload)
+        void OnPropertySelectionChanged(PropertyItemViewModel payload)
         {
             if (_selectedItem != null)
             {
                 _selectedItem.PropertyChanged -= _selectedItem_PropertyChanged;
             }
 
-            var pItem = _appModel.CurrentFile.Properties.FirstOrDefault(p => p.Name == payload);
+            var pItem = _appModel.CurrentFile.Properties.FirstOrDefault(p => p.Name == payload.Name);
             _selectedItem = pItem;
 
             if (pItem != null)
             {
-                
                 _selectedItem.PropertyChanged += _selectedItem_PropertyChanged;
                 SelectedPropertyName = pItem.Name;
                 Value = pItem.Value.ToString();

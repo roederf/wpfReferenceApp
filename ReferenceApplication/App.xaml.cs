@@ -28,10 +28,8 @@ namespace ReferenceApplication
             base.OnStartup(e);
 
             var am = new ApplicationModel();
-            //var am = new ApplicationMockup();
             ApplicationModel = am;
 
-            //ViewModelFactory.RegisterInterfacesAndImplementations(Assembly.GetExecutingAssembly(), "ReferenceApplication.ViewModel", Assembly.Load(new AssemblyName("UI")), "UI.Interfaces");
             ViewModelFactory.RegisterViewModelParameter(ApplicationModel);
 
             BackgroundCommand.BusyCountChanged += BackgroundCommand_BusyCountChanged;
