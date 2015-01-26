@@ -81,9 +81,10 @@
                         <Border Grid.Row="1" Grid.Column="1" x:Name="Border" Background="Transparent"
                                 KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabNavigation="Local"
                                 KeyboardNavigation.TabIndex="2">
-
-                            <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent"
-                                              Margin="{TemplateBinding Padding}"/>
+                            <ScrollViewer>
+                                <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent"
+                                                  Margin="{TemplateBinding Padding}"/>
+                            </ScrollViewer>
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
